@@ -167,14 +167,21 @@ Everything lands under the output directory you gave, organised by step:
 │                                    (*_all.tsv, *_sig.tsv, summary.tsv/pdf)
 │
 ├── auto_code/                       every script the agent generated
+├── summary/
+│   ├── summary.py                   reproducible script for the whole session
+│   ├── full_plan.txt                the plan that was executed
+│   ├── input_file_path.txt          every input the run consumed
+│   └── messages.json                the agent's full message history
 ├── report.pdf                       if report_enabled
 ├── stdout.log  stderr.log           the full transcript
 └── summary.txt                      success, runtime, tokens (command-line runs)
 ```
 
 
-The generated scripts in `auto_code/` and the reproducible script from the
-replayer are the record of what actually ran — keep them with the results.
+`summary/summary.py` is what the replayer produces: the whole session condensed
+into one script you can re-run without the agent. Together with the individual
+scripts in `auto_code/` it is the record of what actually ran — keep it with the
+results.
 
 ## Next
 

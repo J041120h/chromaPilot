@@ -30,8 +30,9 @@ writes code, runs it, checks the output and debugs itself until the step
 succeeds.
 
 **(C) Output.** The replayer condenses the whole session into a single
-reproducible Python script. The report generator interprets each figure,
-retrieves supporting literature and compiles everything into a PDF.
+reproducible Python script (`summary/summary.py`), alongside the executed plan
+and the full message history. The report generator then interprets each figure,
+retrieves supporting literature and compiles everything into `report.pdf`.
 
 ---
 
