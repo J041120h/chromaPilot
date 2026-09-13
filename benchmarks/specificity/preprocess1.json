@@ -1,0 +1,10 @@
+{
+  "prompt_template": "We have raw paired-end FASTQ files generated from Hiplex Cut&Tag experiments, located at:\n\n/path/to/hiplex_data/fastq\n\nThe barcode configuration file for the Hiplex Cut&Tag experiment is located at:\n\n/path/to/hiplex_data/barcode/barcode.csv\n\nThe goal is to process these data and obtain aligned BAM files using hg38 as the reference genome.\n\nAll intermediate files and final results should be written to the following output directory:",
+  "prompt_vars": {},
+  "root_output_dir": "/path/to/results/specificity/preprocess1",
+  "auto_feedback": "good",
+  "n_runs": 5,
+  "max_wall_time_s": 18000,
+  "max_steps": 2000,
+  "max_interrupts": 50
+}

@@ -1,0 +1,425 @@
+{
+  "metadata": {
+    "description": "Default RAG source configuration for bioinformatics pipeline agent",
+    "version": "2.3",
+    "note": "v2.3 + added pyGenomeTracks tutorials (planner/tutorial RAG) and track/function docs (auto-code/api RAG)"
+  },
+  "sources": {
+    "scanpy_tutorials": {
+      "description": "Scanpy tutorials and how-to guides: clustering, integration, trajectories, Pearson residuals, cell cycle, kNN, plotting (core + advanced), Marsilea",
+      "content_type": "tutorial",
+      "urls": [
+        "https://scanpy.readthedocs.io/en/stable/tutorials/basics/clustering.html",
+        "https://scanpy.readthedocs.io/en/stable/tutorials/basics/integrating-data-using-ingest.html",
+        "https://scanpy.readthedocs.io/en/stable/tutorials/plotting/core.html",
+        "https://scanpy.readthedocs.io/en/stable/tutorials/plotting/advanced.html",
+        "https://scanpy.readthedocs.io/en/stable/tutorials/trajectories/paga-paul15.html",
+        "https://scanpy.readthedocs.io/en/stable/tutorials/experimental/pearson_residuals.html",
+        "https://scanpy.readthedocs.io/en/stable/usage-principles.html",
+        "https://scanpy.readthedocs.io/en/stable/how-to/cell-cycle.html",
+        "https://scanpy.readthedocs.io/en/stable/how-to/knn-transformers.html",
+        "https://scanpy.readthedocs.io/en/stable/how-to/plotting-with-marsilea.html"
+      ]
+    },
+    "scanpy_api_preprocessing": {
+      "description": "Scanpy pp API: QC metrics, filter cells/genes, HVG, normalize, log1p, scale, regress_out, PCA, neighbors, scrublet, combat, recipes, sample, downsample",
+      "content_type": "api",
+      "urls": [
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.pp.calculate_qc_metrics.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.pp.filter_cells.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.pp.filter_genes.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.pp.highly_variable_genes.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.pp.log1p.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.pp.pca.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.pp.normalize_total.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.pp.regress_out.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.pp.scale.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.pp.sample.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.pp.downsample_counts.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pp.recipe_zheng17.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pp.recipe_weinreb17.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pp.recipe_seurat.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pp.combat.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pp.scrublet.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pp.scrublet_simulate_doublets.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pp.neighbors.html"
+      ]
+    },
+    "scanpy_api_tools": {
+      "description": "Scanpy tl API: UMAP, t-SNE, diffmap, draw_graph, embedding_density, leiden, louvain, dendrogram, DPT, PAGA, ingest, rank_genes_groups, score_genes, sim",
+      "content_type": "api",
+      "urls": [
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.tl.tsne.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.tl.umap.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.tl.draw_graph.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.tl.diffmap.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.tl.embedding_density.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.tl.leiden.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.tl.louvain.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.tl.dendrogram.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.tl.dpt.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.tl.paga.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.tl.ingest.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.tl.rank_genes_groups.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.tl.filter_rank_genes_groups.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.tl.marker_gene_overlap.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.tl.score_genes.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.tl.score_genes_cell_cycle.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.tl.sim.html"
+      ]
+    },
+    "scanpy_api_plotting": {
+      "description": "Scanpy pl API: scatter, heatmap, dotplot, violin, stacked_violin, matrixplot, tracksplot, clustermap, ranking, dendrogram, class-based (DotPlot, MatrixPlot, StackedViolin), QC plots, PCA, UMAP, diffmap, spatial, embedding, PAGA, rank_genes_groups, correlation",
+      "content_type": "api",
+      "urls": [
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.pl.scatter.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.pl.heatmap.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.pl.dotplot.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.pl.tracksplot.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.pl.violin.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.pl.stacked_violin.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.pl.matrixplot.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.pl.clustermap.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.pl.ranking.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.pl.dendrogram.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/classes/scanpy.pl.DotPlot.html#",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/classes/scanpy.pl.MatrixPlot.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/classes/scanpy.pl.StackedViolin.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pl.highest_expr_genes.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pl.highly_variable_genes.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pl.scrublet_score_distribution.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pl.pca.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pl.pca_loadings.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pl.pca_variance_ratio.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pl.pca_overview.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pl.tsne.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pl.umap.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pl.diffmap.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pl.draw_graph.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pl.spatial.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pl.embedding.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pl.embedding_density.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pl.dpt_groups_pseudotime.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pl.dpt_timeseries.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pl.paga.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pl.paga_path.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pl.paga_compare.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pl.correlation_matrix.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pl.rank_genes_groups.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pl.rank_genes_groups_violin.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pl.rank_genes_groups_stacked_violin.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pl.rank_genes_groups_heatmap.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pl.rank_genes_groups_dotplot.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pl.rank_genes_groups_matrixplot.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pl.rank_genes_groups_tracksplot.html",
+        "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pl.sim.html"
+      ]
+    },
+    "scanpy_api_io": {
+      "description": "Scanpy I/O: read/write (h5, h5ad, 10x_h5, 10x_mtx, visium, csv, excel, hdf, loom, mtx, text, umi_tools), get (obs_df, var_df, rank_genes_groups_df, aggregate)",
+      "content_type": "api",
+      "urls": [
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.write.html#",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.read.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.read_10x_h5.html#",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.read_10x_mtx.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.read_visium.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.read_h5ad.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.read_csv.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.read_excel.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.read_hdf.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.read_loom.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.read_mtx.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.read_text.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.read_umi_tools.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.get.obs_df.html#",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.get.var_df.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.get.rank_genes_groups_df.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.get.aggregate.html"
+      ]
+    },
+    "scanpy_api_queries_metrics": {
+      "description": "Scanpy queries and metrics: biomart annotations, gene coordinates, mitochondrial genes, enrichment, confusion matrix, Geary's C, Moran's I",
+      "content_type": "api",
+      "urls": [
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.queries.biomart_annotations.html#",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.queries.gene_coordinates.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.queries.mitochondrial_genes.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.queries.enrich.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.metrics.confusion_matrix.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.metrics.gearys_c.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.metrics.morans_i.html"
+      ]
+    },
+    "scanpy_api_experimental": {
+      "description": "Scanpy experimental: Pearson residuals (normalize, PCA, HVG, recipe)",
+      "content_type": "api",
+      "urls": [
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.experimental.pp.normalize_pearson_residuals.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.experimental.pp.normalize_pearson_residuals_pca.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.experimental.pp.highly_variable_genes.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.experimental.pp.recipe_pearson_residuals.html"
+      ]
+    },
+    "scanpy_api_settings": {
+      "description": "Scanpy settings/utils: figure params, settings, verbosity, logging, Neighbors class",
+      "content_type": "api",
+      "urls": [
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.Neighbors.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.set_figure_params.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.settings.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.Verbosity.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.logging.print_header.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.logging.print_versions.html"
+      ]
+    },
+    "scanpy_api_external": {
+      "description": "Scanpy external: bbknn, harmony, mnn_correct, scanorama, hashsolo, dca, magic, phate, palantir, trimap, sam, phenograph, wishbone, sandbag, cyclone, spring, cellbrowser",
+      "content_type": "api",
+      "urls": [
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.external.pp.bbknn.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.external.pp.harmony_integrate.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.external.pp.mnn_correct.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.external.pp.scanorama_integrate.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.external.pp.hashsolo.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.external.pp.dca.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.external.pp.magic.html",
+        "https://scanpy.readthedocs.io/en/stable/external/generated/scanpy.external.tl.phate.html",
+        "https://scanpy.readthedocs.io/en/stable/external/generated/scanpy.external.tl.palantir.html",
+        "https://scanpy.readthedocs.io/en/stable/external/generated/scanpy.external.tl.trimap.html",
+        "https://scanpy.readthedocs.io/en/stable/external/generated/scanpy.external.tl.sam.html",
+        "https://scanpy.readthedocs.io/en/stable/external/generated/scanpy.external.tl.phenograph.html",
+        "https://scanpy.readthedocs.io/en/stable/external/generated/scanpy.external.tl.harmony_timeseries.html",
+        "https://scanpy.readthedocs.io/en/stable/external/generated/scanpy.external.tl.wishbone.html",
+        "https://scanpy.readthedocs.io/en/stable/external/generated/scanpy.external.tl.palantir_results.html",
+        "https://scanpy.readthedocs.io/en/stable/external/generated/scanpy.external.tl.sandbag.html",
+        "https://scanpy.readthedocs.io/en/stable/external/generated/scanpy.external.tl.cyclone.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.external.pl.phate.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.external.pl.trimap.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.external.pl.sam.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.external.pl.wishbone_marker_trajectory.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.external.exporting.spring_project.html",
+        "https://scanpy.readthedocs.io/en/stable/generated/scanpy.external.exporting.cellbrowser.html"
+      ]
+    },
+    "anndata_tutorials": {
+      "description": "AnnData tutorials: getting started, loaders, collections, dask, awkward arrays, lazy reading",
+      "content_type": "tutorial",
+      "urls": [
+        "https://anndata.readthedocs.io/en/stable/tutorials/notebooks/getting-started.html",
+        "https://anndata.readthedocs.io/en/stable/tutorials/notebooks/annloader.html",
+        "https://anndata.readthedocs.io/en/stable/tutorials/notebooks/anncollection.html",
+        "https://anndata.readthedocs.io/en/stable/tutorials/notebooks/anncollection-annloader.html",
+        "https://anndata.readthedocs.io/en/stable/tutorials/notebooks/anndata_dask_array.html",
+        "https://anndata.readthedocs.io/en/stable/tutorials/notebooks/awkward-arrays.html",
+        "https://anndata.readthedocs.io/en/stable/tutorials/notebooks/read_lazy.html#"
+      ]
+    },
+    "anndata_api": {
+      "description": "AnnData core API: AnnData class, concat, I/O (h5ad, zarr, csv, excel, hdf, loom, mtx, text, umi_tools), write, settings, concatenation guide",
+      "content_type": "api",
+      "urls": [
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.AnnData.html#",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.concat.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.io.read_h5ad.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.io.read_zarr.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.io.read_elem.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.io.sparse_dataset.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.io.read_csv.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.io.read_excel.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.io.read_hdf.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.io.read_loom.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.io.read_mtx.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.io.read_text.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.io.read_umi_tools.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.AnnData.write_h5ad.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.AnnData.write_zarr.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.io.write_h5ad.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.io.write_zarr.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.io.write_elem.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.AnnData.write_csvs.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.AnnData.write_loom.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.settings.html#",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.settings.override.html",
+        "https://anndata.readthedocs.io/en/stable/concatenation.html"
+      ]
+    },
+    "anndata_api_experimental": {
+      "description": "AnnData experimental: AnnLoader, concat_on_disk, lazy reading, dispatched I/O, IOSpec, StorageType, backed arrays",
+      "content_type": "api",
+      "urls": [
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.experimental.AnnLoader.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.experimental.concat_on_disk.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.experimental.read_elem_lazy.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.experimental.read_lazy.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.experimental.read_dispatched.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.experimental.write_dispatched.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.experimental.IOSpec.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.experimental.Read.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.experimental.Write.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.experimental.ReadCallback.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.experimental.WriteCallback.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.experimental.StorageType.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.experimental.backed.MaskedArray.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.experimental.backed.CategoricalArray.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.experimental.backed.Dataset2D.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.experimental.Dataset2DIlocIndexer.html"
+      ]
+    },
+    "anndata_api_types": {
+      "description": "AnnData type system: typing, CSR/CSC datasets, Index, AxisStorable, RWAble, extension namespaces, warnings",
+      "content_type": "api",
+      "urls": [
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.register_anndata_namespace.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.types.ExtensionNamespace.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.ImplicitModificationWarning.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.abc.CSRDataset.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.abc.CSCDataset.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.typing.Index.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.typing.AxisStorable.html",
+        "https://anndata.readthedocs.io/en/stable/generated/anndata.typing.RWAble.html"
+      ]
+    },
+    "muon_tutorials": {
+      "description": "Muon tutorials: RNA+ATAC (PBMC 10k, brain 3k), CITE-seq, TEA-seq, MEFISTO (evodevo, microbiome, ST), CLL",
+      "content_type": "tutorial",
+      "urls": [
+        "https://muon-tutorials.readthedocs.io/en/latest/single-cell-rna-atac/pbmc10k/1-Gene-Expression-Processing.html",
+        "https://muon-tutorials.readthedocs.io/en/latest/single-cell-rna-atac/pbmc10k/2-Chromatin-Accessibility-Processing.html",
+        "https://muon-tutorials.readthedocs.io/en/latest/single-cell-rna-atac/pbmc10k/3-Multimodal-Omics-Data-Integration.html",
+        "https://muon-tutorials.readthedocs.io/en/latest/single-cell-rna-atac/brain3k/1-Processing-and-Integration.html",
+        "https://muon-tutorials.readthedocs.io/en/latest/cite-seq/1-CITE-seq-PBMC-5k.html",
+        "https://muon-tutorials.readthedocs.io/en/latest/cite-seq/2-CITE-seq-PBMC-5k-Weighted-Neighbours.html",
+        "https://muon-tutorials.readthedocs.io/en/latest/trimodal/tea-seq/1-TEA-seq-PBMC.html",
+        "https://muon-tutorials.readthedocs.io/en/latest/mefisto/1-MEFISTO-evodevo.html",
+        "https://muon-tutorials.readthedocs.io/en/latest/mefisto/2-MEFISTO-microbiome.html",
+        "https://muon-tutorials.readthedocs.io/en/latest/mefisto/3-MEFISTO-ST.html",
+        "https://muon-tutorials.readthedocs.io/en/latest/CLL.html#"
+      ]
+    },
+    "muon_api": {
+      "description": "Muon core API: MuData, pp (filter, intersect, l2norm, neighbors, sample), pl (embedding, histogram, mofa, scatter, umap), utils",
+      "content_type": "api",
+      "urls": [
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.MuData.html#",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.pp.filter_obs.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.pp.filter_var.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.pp.intersect_obs.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.pp.l2norm.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.pp.neighbors.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.pp.sample_obs.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.pl.embedding.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.pl.histogram.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.pl.mofa.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.pl.mofa_loadings.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.pl.scatter.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.pl.umap.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.utils.html"
+      ]
+    },
+    "muon_atac_api": {
+      "description": "Muon ATAC API: pp (binarize, scopen, tfidf), tl (LSI, nucleosome_signal, TSS enrichment, peak annotation, fragments, sequences), pl",
+      "content_type": "api",
+      "urls": [
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.atac.pp.binarize.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.atac.pp.scopen.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.atac.pp.tfidf.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.atac.tl.add_genes_peaks_groups.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.atac.tl.add_peak_annotation.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.atac.tl.add_peak_annotation_gene_names.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.atac.tl.count_fragments_features.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.atac.tl.fetch_regions_to_df.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.atac.tl.get_sequences.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.atac.tl.initialise_default_files.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.atac.tl.locate_file.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.atac.tl.locate_fragments.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.atac.tl.locate_genome.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.atac.tl.lsi.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.atac.tl.nucleosome_signal.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.atac.tl.scan_sequences.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.atac.tl.tss_enrichment.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.atac.pl.dotplot.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.atac.pl.embedding.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.atac.pl.fragment_histogram.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.atac.pl.lsi.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.atac.pl.mofa.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.atac.pl.pca.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.atac.pl.tss_enrichment.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.atac.pl.umap.html"
+      ]
+    },
+    "muon_prot_api": {
+      "description": "Muon protein API: CLR and DSB normalization for CITE-seq",
+      "content_type": "api",
+      "urls": [
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.prot.pp.clr.html",
+        "https://muon.readthedocs.io/en/latest/api/generated/muon.prot.pp.dsb.html"
+      ]
+    },
+    "pygenometracks_overview":{
+      "description": "pyGenomeTracks overview",
+      "content_type": "tutorial",
+      "urls": [
+        "https://pygenometracks.readthedocs.io/en/latest/"
+      ]
+    },
+    "pygenometracks_api": {
+      "description": "pyGenomeTracks examples and tutorials for genome browser tracks",
+      "content_type": "api",
+      "urls": [
+        "https://pygenometracks.readthedocs.io/en/latest/content/examples.html#basic-examples",
+        "https://pygenometracks.readthedocs.io/en/latest/content/examples.html#demo-examples",
+        "https://pygenometracks.readthedocs.io/en/latest/content/examples.html#examples-with-bed-and-gtf",
+        "https://pygenometracks.readthedocs.io/en/latest/content/examples.html#examples-with-4c-seq",
+        "https://pygenometracks.readthedocs.io/en/latest/content/examples.html#examples-with-peaks",
+        "https://pygenometracks.readthedocs.io/en/latest/content/examples.html#examples-with-epilogos",
+        "https://pygenometracks.readthedocs.io/en/latest/content/examples.html#example-with-horizontal-lines",
+        "https://pygenometracks.readthedocs.io/en/latest/content/examples.html#examples-with-multiple-options-for-bigwig-tracks",
+        "https://pygenometracks.readthedocs.io/en/latest/content/examples.html#examples-with-multiple-options",
+        "https://pygenometracks.readthedocs.io/en/latest/content/examples.html#log-transform-and-operation-examples",
+        "https://pygenometracks.readthedocs.io/en/latest/content/examples.html#examples-with-hi-c-data"
+      ]
+    },
+    "pygenometracks_track_api": {
+      "description": "pyGenomeTracks usage and track/function definitions for auto-code generation",
+      "content_type": "api",
+      "urls": [
+        "https://pygenometracks.readthedocs.io/en/latest/content/usage.html#pygenometracks",
+        "https://pygenometracks.readthedocs.io/en/latest/content/tracks/bed.html",
+        "https://pygenometracks.readthedocs.io/en/latest/content/tracks/bedgraph.html",
+        "https://pygenometracks.readthedocs.io/en/latest/content/tracks/bedgraph_matrix.html",
+        "https://pygenometracks.readthedocs.io/en/latest/content/tracks/bigwig.html",
+        "https://pygenometracks.readthedocs.io/en/latest/content/tracks/domains.html",
+        "https://pygenometracks.readthedocs.io/en/latest/content/tracks/epilogos.html",
+        "https://pygenometracks.readthedocs.io/en/latest/content/tracks/fasta.html",
+        "https://pygenometracks.readthedocs.io/en/latest/content/tracks/gtf.html",
+        "https://pygenometracks.readthedocs.io/en/latest/content/tracks/hic_matrix.html",
+        "https://pygenometracks.readthedocs.io/en/latest/content/tracks/hic_matrix_square.html",
+        "https://pygenometracks.readthedocs.io/en/latest/content/tracks/hlines.html",
+        "https://pygenometracks.readthedocs.io/en/latest/content/tracks/links.html",
+        "https://pygenometracks.readthedocs.io/en/latest/content/tracks/maf.html",
+        "https://pygenometracks.readthedocs.io/en/latest/content/tracks/narrow_peak.html",
+        "https://pygenometracks.readthedocs.io/en/latest/content/tracks/scalebar.html",
+        "https://pygenometracks.readthedocs.io/en/latest/content/tracks/spacer.html",
+        "https://pygenometracks.readthedocs.io/en/latest/content/tracks/vhighlight.html",
+        "https://pygenometracks.readthedocs.io/en/latest/content/tracks/vlines.html",
+        "https://pygenometracks.readthedocs.io/en/latest/content/tracks/x_axis.html"
+      ]
+    },
+    "sample_doc_tutorials": {
+      "description": "Local tutorial documents: FastQC manual",
+      "content_type": "tutorial",
+      "paths": [
+        "rag_sources/sample_doc/FastQC.pdf"
+      ]
+    },
+    "sample_doc_api": {
+      "description": "Local API/tool reference documents: Bowtie2, Trimmomatic",
+      "content_type": "api",
+      "paths": [
+        "rag_sources/sample_doc/bowtie2.txt",
+        "rag_sources/sample_doc/trimmomatic.txt"
+      ]
+    }
+  }
+}

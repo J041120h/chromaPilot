@@ -1,0 +1,18 @@
+{
+  "prompts": {
+    "user1": "Take fastq files at\n\n/path/to/hiplex_data/fastq\n\nand barcode from\n\n\n\n/path/to/hiplex_data/barcode/barcode.csv\n\nfrom a Hiplex CUT&Tag experiment.\n\nAlign to hg38 human genome and perform biclustering analysis in C1 and C2 to get clusters, saving the intermediate and result files to\n\n",
+    "user2": "I have raw sequence files from a hi-plex cut&tag experiment in\n\n/path/to/hiplex_data/fastq\n\nwith the barcode data as\n\n/path/to/hiplex_data/barcode/barcode.csv\n\nPlease run an analysis to identify clusters of genomic regions and clusters of CRF pairs that show similar patterns within C1 and C2, and create one single plot to visualize the clustering results.\n\nTake human genome as reference and save everything to\n\n",
+    "user3": "Give you the hiplex cut&tag fastq files and barcode for 4 samples.\n\nThe fastq file paths are under\n\n/path/to/hiplex_data/fastq\n\nand barcode path under:\n\n/path/to/hiplex_data/barcode/barcode.csv\n\nThe reference genome is hg38, give me the biclustering analysis of sample C1 and C2, written into:\n\n",
+    "user4": "I have a set of raw sequence files from hi-plex cut&tag in\n\n/path/to/hiplex_data/fastq\n\nand the barcode file in\n\n/path/to/hiplex_data/barcode/barcode.csv\n\nI want to do biclustering on C1 and C2 to find groups of regions and CRF pairs that have localization similarity across the genome. use hg38 reference genome. For each localization pattern you find, produce the genomic context of the regions with the cCRE annotations, including features about the gene structure and body.\n\nPut the output in\n\n",
+    "user5": "Use FASTQ files at\n\n/path/to/hiplex_data/fastq\n\nand barcode file at\n\n/path/to/hiplex_data/barcode/barcode.csv\n\nfrom Hiplex CUT&Tag sequencing.\n\nAlign to hg38, analyze C1 and C2 jointly and perform biclustering on genomic regions and CRF pairs. For each pattern, summarize genomic context using genic and cCRE annotations. Save all results to the output directory\n\n",
+    "user6": "I have raw FASTQ files from Hiplex experiment in\n\n/path/to/hiplex_data/fastq\n\nand barcode file at:\n\n/path/to/hiplex_data/barcode/barcode.csv\n\nUse hg38 as reference, process the data and perform biclustering analysis on C1 and C2 to identify clusters of genomic regions and CRF pairs.\n\nDeposit intermediate files and outputs in:\n\n",
+    "user7": "Hiplex CUT&Tag raw fastq files and barcodes at:\n\n/path/to/hiplex_data/fastq\n\n/path/to/hiplex_data/barcode/barcode.csv\n\nProcess the data and perform biclustering analysis for only C1 and C2, hg38 reference. For each localization pattern, summarize the genomic context of associated regions using available annotations.\n\nOutput to:\n\n"
+  },
+  "prompt_vars": {},
+  "root_output_dir": "/path/to/results/paraphrase/hiplex3",
+  "auto_feedback": "good",
+  "n_runs": 3,
+  "max_wall_time_s": 20000,
+  "max_steps": 2000,
+  "max_interrupts": 50
+}

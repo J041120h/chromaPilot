@@ -1,0 +1,33 @@
+# ChromaPilot interface — runtime config template.
+#
+# Copy this file to  config.yaml  (same folder) and fill in your key(s).
+# The interface uses ONE config file (this one, or the path in $IFACE_CONFIG) —
+# it does not search anywhere else. config.yaml is git-ignored.
+#
+# Provide ONE or BOTH providers. If both keys are present, you can switch between
+# Claude and OpenAI from the dropdown on the start screen.
+
+conda_env: 'chromapilot'            # informational: the env that has langgraph
+
+langsmith:
+  trace: 'false'                # 'true' to enable LangSmith tracing (then set api_key)
+  api_key: ''
+
+llm:
+  # --- Primary provider (used by default). 'auto' detects from the key prefix. ---
+  provider: 'auto'              # 'anthropic' | 'openai' | 'google' | 'auto'
+  model: 'claude-sonnet-4-6'    # for speed, e.g. 'claude-haiku-4-5-20251001'
+  api_key: 'YOUR_PRIMARY_API_KEY'
+  admin_api_key: ''             # optional (OpenAI org usage tracking only)
+  base_url: null                # optional; leave null for Anthropic/Google
+
+  # --- Optional second provider (fill in to enable switching in the UI). ---
+  alt_model: 'gpt-5'
+  alt_api_key: ''               # e.g. an OpenAI 'sk-...' key
+  alt_admin_api_key: ''
+  alt_base_url: 'https://api.openai.com/v1'
+
+limit:
+  max_tokens: 200000
+  report_enabled: 'false'       # 'true' to run the figure-captioning report subgraph
+  rag_verbose: 'false'

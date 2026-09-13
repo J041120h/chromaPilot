@@ -1,0 +1,18 @@
+{
+  "prompts": {
+    "user1": "Please take the 10x CellRanger ARC output file at\n\n/path/to/scrna_data/filtered_feature_bc_matrix.h5\n\nPerform basic QC on the gene expression data: filter cells with fewer than 200 genes, filter genes expressed in fewer than 3 cells, calculate mitochondrial percentage, and remove cells with mitochondrial percentage above 20%. Generate corresponding visualization plots.\n\nSave all intermediate and result files to\n\n",
+    "user2": "I have a 10x CellRanger ARC output file in\n\n/path/to/scrna_data/filtered_feature_bc_matrix.h5\n\nI hope you can do basic QC on gene expression part. Filter out cells that have less than 200 genes, remove genes that appear in less than 3 cells, then compute the mitochondrial percentage and drop cells with more than 20%. Can you also provide visualization plots and save everything to\n\n",
+    "user3": "Given the 10x CellRanger ARC h5 file at:\n\n/path/to/scrna_data/filtered_feature_bc_matrix.h5\n\nDo QC on the gene expression data. Filter cells below 200 genes, drop genes below 3 cells, then compute mito percentage and drop cells above 20%. Give me the QC plots, written into:\n\n",
+    "user4": "I want to make sure I have a clean cell population before any downstream analysis, so please do basic quality control on the 10x CellRanger ARC output at\n\n/path/to/scrna_data/filtered_feature_bc_matrix.h5\n\nFilter cells with fewer than 200 genes detected, exclude genes that are present in fewer than 3 cells, then calculate the percentage of mitochondrial counts per cell and drop any cell where this percentage exceeds 20%. Also produce QC diagnostic plots so I can inspect the QC metrics before and after filtering.\n\nPut the output in\n\n",
+    "user5": "Use the 10x CellRanger ARC h5 file at\n\n/path/to/scrna_data/filtered_feature_bc_matrix.h5\n\nRun QC on gene expression, filter cells with <200 genes, remove genes in <3 cells, compute mito percentage, remove cells with mito% >20, generate QC visualization plots, save all results to the output directory\n\n",
+    "user6": "I have a 10x CellRanger ARC h5 file at:\n\n/path/to/scrna_data/filtered_feature_bc_matrix.h5\n\nI need to perform basic QC on the gene expression matrix. Filter cells with under 200 genes, filter genes expressed in fewer than 3 cells, calculate mitochondrial percentage and remove cells above 20%. Also generate QC visualization.\n\nDeposit intermediate files and outputs in:\n\n",
+    "user7": "10x CellRanger ARC h5:\n/path/to/scrna_data/filtered_feature_bc_matrix.h5\n\nBasic QC on gene expression\nmin 200 genes per cell\nmin 3 cells per gene\nmito% cutoff 20\nQC plots\n\nOutput to:\n\n"
+  },
+  "prompt_vars": {},
+  "root_output_dir": "/path/to/results/paraphrase/autocode3",
+  "auto_feedback": "good",
+  "n_runs": 3,
+  "max_wall_time_s": 9000,
+  "max_steps": 2000,
+  "max_interrupts": 10
+}

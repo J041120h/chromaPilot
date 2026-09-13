@@ -1,0 +1,10 @@
+{
+  "prompt_template": "We have a scRNA-seq count dataset at:\n\n/path/to/scrna_counts.h5ad\n\nPlease perform a preprocessing pipeline as follows: load the AnnData object and assume a sample column exists in adata.obs (no need to infer or handle missing metadata).\n\nFirst, perform basic filtering by removing genes expressed in fewer than 500 cells and cells expressing fewer than 500 genes. Then identify mitochondrial genes using prefixes “MT-” or “mt-”, compute QC metrics including pct_counts_mt, and remove cells with mitochondrial percentage ≥20. Next, remove all mitochondrial genes from the dataset. Then, select 2000 highly variable genes using Seurat v3 flavor with sample as batch key, normalize total counts to 1e4, apply log1p transformation, run PCA with 20 components, and perform Harmony integration using sample as the batch variable with 30 iterations (use harmonypy directly without call from scanpy), storing the corrected embedding in X_pca_harmony. You should generate and save visualization outputs including QC metric distributions (n_genes_by_counts, total_counts, pct_counts_mt), PCA plot, and UMAP embedding (computed from PCA or Harmony), optionally colored by sample, and save all figures. Don't save any intermediate or final h5ad. Ensure all outputs are written to the specified directory without creating unnecessary files or handling additional edge cases, and do not display plots.\n\nThe output directory is:\n\n",
+  "prompt_vars": {},
+  "root_output_dir": "/path/to/results/pipelines/autocode4",
+  "auto_feedback": "good",
+  "n_runs": 5,
+  "max_wall_time_s": 9000,
+  "max_steps": 2000,
+  "max_interrupts": 10
+}

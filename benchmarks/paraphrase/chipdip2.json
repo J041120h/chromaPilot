@@ -1,0 +1,18 @@
+{
+  "prompts": {
+    "user1": "Please take the paired-end FASTQ files at\n\n/path/to/chipdip_data/test_data/fastq\n\nfrom a ChIPDIP experiment. Together with the barcode configuration file at\n\n/path/to/chipdip_data/mDC_25Ab_config.txt\n\nand barcode format file at\n\n/path/to/chipdip_data/mDC_25Ab_format.txt\n\nand the DPM/BPM barcode FASTA files at\n\n/path/to/chipdip_data/dpm96.fasta\n/path/to/chipdip_data/bpm.fasta\n\nPerform peak calling for each CRF in all three samples\n\nUse hg38 human reference genome and result files to\n\n",
+    "user2": "I have raw paired-end sequencing files from a chip-dip experiment in\n\n/path/to/chipdip_data/test_data/fastq\n\ntogether with the barcode configuration and format files at\n\n/path/to/chipdip_data/mDC_25Ab_config.txt\n\n/path/to/chipdip_data/mDC_25Ab_format.txt\n\nand the dpm/bpm barcode fasta files at\n\n/path/to/chipdip_data/dpm96.fasta\n/path/to/chipdip_data/bpm.fasta\n\nThere are 3 samples. Run an analysis to find peak regions taking mouse genome as reference, and save everything to\n\n",
+    "user3": "Given the chipdip fastq file path under:\n\n/path/to/chipdip_data/test_data/fastq\n\nalong with barcode config and format files in\n\n/path/to/chipdip_data/mDC_25Ab_config.txt\n\n/path/to/chipdip_data/mDC_25Ab_format.txt\n\nand dpm/bpm barcode fasta:\n\n/path/to/chipdip_data/dpm96.fasta\n/path/to/chipdip_data/bpm.fasta\n\nProcess data and identify peaks using mm10 reference. Then, perform pathway analysis to characterize function of each target. Write results into:\n\n",
+    "user4": "I have a set of raw sequence files from chip-dip in\n\n/path/to/chipdip_data/test_data/fastq\n\nand the configuration and format files in\n\n/path/to/chipdip_data/mDC_25Ab_config.txt\n\n/path/to/chipdip_data/mDC_25Ab_format.txt\n\nalso with the DPM BPM barcode fasta\n\n/path/to/chipdip_data/dpm96.fasta\n/path/to/chipdip_data/bpm.fasta\n\nI want to do peak profiling analysis now. Use mm10 reference. Also do pathway enrichment analysis on peak regions. All samples need processing: 0hr, 6hr, 24hr. Put the output in\n\n",
+    "user5": "Use FASTQ files at \n\n/path/to/chipdip_data/test_data/fastq\n\nand barcode files at\n\n/path/to/chipdip_data/mDC_25Ab_config.txt\n\n/path/to/chipdip_data/mDC_25Ab_format.txt\n\n/path/to/chipdip_data/dpm96.fasta\n/path/to/chipdip_data/bpm.fasta\n\nAlign to mm10, perform peak calling to identify peak regions, save all results to the output directory\n\n",
+    "user6": "I have raw FASTQ files from chipdip experiment in\n\n/path/to/chipdip_data/test_data/fastq\n\nand barcode files in\n\n/path/to/chipdip_data/mDC_25Ab_config.txt\n\n/path/to/chipdip_data/mDC_25Ab_format.txt\n\nThe DPM and BPM fasta files are also provided\n\n/path/to/chipdip_data/dpm96.fasta\n/path/to/chipdip_data/bpm.fasta\n\nI want to process the data using mm10 as reference, perform peak calling for each CRF, and then run pathway enrichment analysis. Deposit intermediate files and outputs in:\n\n",
+    "user7": "Chipdip raw fastq files and barcodes at:\n\n/path/to/chipdip_data/test_data/fastq\n\n/path/to/chipdip_data/mDC_25Ab_config.txt\n\n/path/to/chipdip_data/mDC_25Ab_format.txt\n\n/path/to/chipdip_data/dpm96.fasta\n/path/to/chipdip_data/bpm.fasta\n\nmm10 reference, do a peak calling on the three samples.\n\nOutput to:\n\n"
+  },
+  "prompt_vars": {},
+  "root_output_dir": "/path/to/results/paraphrase/chipdip2",
+  "auto_feedback": "good",
+  "n_runs": 3,
+  "max_wall_time_s": 18000,
+  "max_steps": 2000,
+  "max_interrupts": 50
+}

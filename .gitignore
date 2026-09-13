@@ -1,0 +1,61 @@
+# ─── Secrets ──────────────────────────────────────────────────────────────────
+# Never commit these: they hold real API keys.
+config.yaml
+chromapilot/interface/config.yaml
+.env
+*.pem
+*.key
+
+# ─── Reference genomes (downloaded on demand, several GB) ─────────────────────
+ref/*
+!ref/ref.json
+!ref/README.md
+
+# ─── Run outputs ──────────────────────────────────────────────────────────────
+chromapilot/interface/runs/
+results/
+runs/
+*.log
+
+# ─── Caches rebuilt automatically ─────────────────────────────────────────────
+chromapilot/rag_sources/.flashrank_cache/
+chromapilot/.langgraph_api/
+tools/chipdip_prep/env/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# ─── Large data files (exceed GitHub's 100 MB limit) ──────────────────────────
+*.h5ad
+*.h5
+*.loom
+*.bam
+*.bai
+*.fastq
+*.fastq.gz
+*.bw
+*.bigwig
+
+# ─── Environments & editors ───────────────────────────────────────────────────
+venv/
+.venv/
+env/
+ENV/
+.vscode/
+.idea/
+*.code-workspace
+.history/
+
+# ─── OS cruft ─────────────────────────────────────────────────────────────────
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*~
+.nfs*

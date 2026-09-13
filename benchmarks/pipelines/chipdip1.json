@@ -1,0 +1,10 @@
+{
+  "prompt_template": "We have raw paired-end FASTQ files generated from ChIP-DIP experiments with a UMI length of 8, located at:\n\n/path/to/chipdip_data/test_data/fastq\n\nThe barcode configuration file is located at:\n\n/path/to/chipdip_data/mDC_25Ab_config.txt\n\nThe barcode format file is located at:\n\n/path/to/chipdip_data/mDC_25Ab_format.txt\n\nThe DPM and BPM barcode FASTA files are located at:\n\n/path/to/chipdip_data/dpm96.fasta\n/path/to/chipdip_data/bpm.fasta\n\nThe dataset contains three samples: ohr, 6hr, and 24hr.\n\nPerform biclustering analysis on each sample separately to identify groups of regions and CRF pairs that share similar localization patterns across the genome. The reference genome to use is mm10.\n\nAll intermediate files and final results should be written to the following output directory:\n\n",
+  "prompt_vars": {},
+  "root_output_dir": "/path/to/results/pipelines/chipdip1",
+  "auto_feedback": "good",
+  "n_runs": 2,
+  "max_wall_time_s": 18000,
+  "max_steps": 2000,
+  "max_interrupts": 50
+}

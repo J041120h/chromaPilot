@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: "If you use ChromaPilot, please cite both the software and the paper below."
+title: "ChromaPilot: an LLM agent for multiplexed epigenomics analysis"
+abstract: >-
+  ChromaPilot turns a plain-language request into a reviewed, executed and
+  documented epigenomics analysis. It plans the pipeline, shows the plan for
+  human review before anything runs, executes it with a validated tool library,
+  generates and self-corrects code when no tool fits, and produces a
+  reproducible script and a PDF report. Hiplex CUT&Tag and ChIP-DIP are
+  supported end to end.
+type: software
+license: MIT
+repository-code: "https://github.com/J041120h/ChromaPilot"
+keywords:
+  - epigenomics
+  - CUT&Tag
+  - ChIP-DIP
+  - LLM agent
+  - bioinformatics workflow
+  - reproducible research
+
+# TODO before publishing: complete the author list (names, ORCIDs, affiliations)
+# and fill in the preferred-citation block with the published reference.
+authors:
+  - family-names: "Jiang"
+    given-names: "Harry"
+
+preferred-citation:
+  type: article
+  title: "TODO: paper title"
+  authors:
+    - family-names: "Jiang"
+      given-names: "Harry"
+  year: 2026
+  journal: "TODO"
+  doi: "TODO"

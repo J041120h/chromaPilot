@@ -1,0 +1,10 @@
+{
+  "prompt_template": "I have bam files with mm10 as reference genome, located at:\n\n/path/to/chipdip_data/test_data/bam\n\nPlot genome tracks grouped by CRF (H3K27ac, H3K27me3, CTCF) and ordered by time (0hr, 6hr, 24hr). Use fill-style tracks (gray/blue/purple), one sample one color, add y=0 baselines, keep consistent y-ranges (0-15 for H3K27ac/H3K27me3, 0-9 for CTCF), one time one track (do not mix or combine), restrict to chr2:129298000-129420000, include gene annotations from:\n\n/path/to/chipdip_data/gencode.vM25.basic.annotation.gtf\n\nSave to:",
+  "prompt_vars": {},
+  "root_output_dir": "/path/to/results/pipelines/autocode2",
+  "auto_feedback": "good",
+  "n_runs": 1,
+  "max_wall_time_s": 9000,
+  "max_steps": 2000,
+  "max_interrupts": 10
+}

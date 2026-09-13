@@ -1,0 +1,45 @@
+# ChromaPilot — runtime configuration template.
+#
+#   cp config.example.yaml config.yaml     # then fill in llm.api_key
+#
+# `setup.sh` does this copy for you. config.yaml is git-ignored, so your key
+# never leaves your machine. Never commit a file containing a real API key.
+
+# Name of the conda environment created by setup.sh. The agent shells out to
+# this environment when it runs generated code, so it must match.
+conda_env: 'chromapilot'
+
+# --- LangSmith (optional) ----------------------------------------------------
+# Traces every LLM call, tool call and state transition to smith.langchain.com,
+# which is useful when debugging a plan. Entirely optional: leave trace 'false'
+# and the agent runs normally with no account required.
+langsmith:
+  trace: 'false'                # 'true' | 'false'
+  api_key: ''                   # required only when trace is 'true'
+
+# --- Large language model (required) -----------------------------------------
+# The key must match the provider and have enough quota for a full run
+# (a preprocessing pipeline costs roughly 100-300k tokens).
+#
+#   provider     model examples                         key prefix
+#   ---------    -------------------------------------  ----------
+#   anthropic    claude-sonnet-4-6                       sk-ant-...
+#   openai       gpt-5                                   sk-proj-... / sk-...
+#   google       google_genai:gemini-2.5-flash-lite      (no prefix; set provider)
+llm:
+  provider: 'auto'              # 'auto' detects the provider from the key prefix
+  model: 'claude-sonnet-4-6'
+  api_key: 'YOUR_API_KEY_HERE'
+  admin_api_key: ''             # optional: an admin key enables per-run token accounting
+  base_url: null                # optional: set for OpenAI-compatible endpoints
+
+# --- Runtime limits ----------------------------------------------------------
+limit:
+  # Context window (input + output tokens) allowed per LLM request. Use the
+  # value your model actually supports — see docs/configuration.md.
+  max_tokens: 200000
+  # 'true' runs the report stage at the end of a run: the agent interprets each
+  # figure, retrieves supporting literature and compiles a PDF report.
+  report_enabled: 'true'
+  # 'true' prints which documents the RAG retriever pulled for each decision.
+  rag_verbose: 'false'

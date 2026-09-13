@@ -1,0 +1,15 @@
+{
+  "hiplex": 
+    {
+      "1": "create_barcode_fasta → qc_by_percentile",
+      "2": "create_barcode_fasta → convert_bed_to_bigwig",
+      "3": "create_barcode_fasta → biclustering_wrapper",
+      "4": "create_barcode_fasta → differential_analysis",
+      "5": "create_barcode_fasta → peak_differential_analysis"
+    },
+  "chipdip":
+    {
+      "1": "chipdip_prep → peak_profiling",
+      "2": "chipdip_prep → differential_analysis"
+    }
+}

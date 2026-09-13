@@ -1,0 +1,10 @@
+{
+  "prompt_template": "We have BAM files corresponding to the H3K4me3-H3K4me3 and H3K4me1-H3K4me1 mark combinations in sample C1, located at:\n\n/path/to/hiplex_data/autocode_bam\n\nThe goal is to compare these two chromatin states by defining a union set of their peaks and assessing the correlation of their read signals across these regions. The correlation results should be visualized as figures.\n\nThe reference genome is hg38.\n\nAll intermediate files and final results should be written to the following output directory:\n\n",
+  "prompt_vars": {},
+  "root_output_dir": "/path/to/results/pipelines/autocode1",
+  "auto_feedback": "good",
+  "n_runs": 1,
+  "max_wall_time_s": 9000,
+  "max_steps": 2000,
+  "max_interrupts": 10
+}

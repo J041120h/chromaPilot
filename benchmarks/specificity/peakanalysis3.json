@@ -1,0 +1,10 @@
+{
+  "prompt_template": "We have BAM files generated from Hiplex Cut&Tag experiments, located at:\n\n/path/to/hiplex_data/bam\n\nThe goal is to identify peak regions for each CRF pair using hg38 as the reference genome, and conduct differential peak analysis between the C and T groups. First, compute genome-wide read coverage from the BAM files and generate bedGraph files using bedtools genomecov or SAMtools. Next, call peaks from each bedGraph: identify candidate signal blocks by AUC, assess each block's significance against its local background region (a window spanning 10 times the block length, centered on the block) using a binomial test (for integer counts) or Poisson test (for fractional values), and retain peaks with fold change ≥ 2 and q-value < 0.05 after BH correction. Output peaks in narrowPeak format. For each CRF pair, perform pathway enrichment analysis on the identified peaks using rGREAT with MSigDB Hallmark gene sets (collection H) and hg38 TxDb as the TSS reference. For differential analysis between the C group (C1, C2) and T group (T1, T2), build a consensus peak set by retaining regions present in at least 2 samples within any condition. Count reads from BAM files within these consensus regions, then apply limma to identify differentially accessible regions (|log2FC| > 0.5, FDR < 0.05).\n\nThe dataset contains four samples: C1, C2, T1, and T2.\n\nUse all available BAM files as-is without any additional filtering.\n\nAll intermediate files and final results should be written to the following output directory:",
+  "prompt_vars": {},
+  "root_output_dir": "/path/to/results/specificity/peakanalysis3",
+  "auto_feedback": "good",
+  "n_runs": 5,
+  "max_wall_time_s": 18000,
+  "max_steps": 2000,
+  "max_interrupts": 50
+}

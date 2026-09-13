@@ -1,0 +1,10 @@
+{
+  "prompt_template": "We have raw paired-end FASTQ files generated from Hiplex Cut&Tag experiments, located at:\n\n/path/to/hiplex_data/fastq\n\nThe barcode configuration file for the Hiplex Cut&Tag experiment is located at:\n\n/path/to/hiplex_data/barcode/barcode.csv\n\nThe goal is to process these data and obtain aligned BAM files using hg38 as the reference genome. First, generate barcode FASTA by converting the CSV file into forward and reverse barcode FASTA. Second, demultiplex the raw FASTQ files using Cutadapt with anchored 5' exact barcode matching on both R1 and R2. Third, identify the adapter structure at the 5' end of each read using a custom adapter scanner that allows limited mismatches. The adapter contains a linker sequence (GCGATCGAGGACGGCAGATGTGTATAAGAGACAG or CACCGTCTCCGCCTCAGATGTGTATAAGAGACAG). Reads where the adapter cannot be identified should be discarded; retained reads should be trimmed and their read names annotated with the detected adapter information. Next, align the trimmed FASTQ files to hg38 using Bowtie2 in local alignment mode. Filter with SAMtools: retain only properly paired reads, remove MAPQ < 10 alignments, and remove reads mapped to chrM or unplaced/random contigs. Remove PCR duplicates using Picard MarkDuplicates. Coordinate-sort and index the final BAM file using SAMtools.\n\nAll intermediate files and final results should be written to the following output directory:",
+  "prompt_vars": {},
+  "root_output_dir": "/path/to/results/specificity/preprocess3",
+  "auto_feedback": "good",
+  "n_runs": 5,
+  "max_wall_time_s": 18000,
+  "max_steps": 2000,
+  "max_interrupts": 50
+}

@@ -1,0 +1,6 @@
+# Per-run output directories created by the interface at runtime.
+runs/
+__pycache__/
+*.pyc
+# Local runtime config (contains your API key) — copy from config.example.yaml.
+config.yaml

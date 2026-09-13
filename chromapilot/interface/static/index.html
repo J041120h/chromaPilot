@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ChromaPilot — interface</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 40 40%27%3E%3Crect width=%2740%27 height=%2740%27 rx=%2710%27 fill=%27%234f46e5%27/%3E%3Cpath d=%27M10 12c5 0 5 16 10 16s5-16 10-16M10 28c5 0 5-16 10-16s5 16 10 16%27 fill=%27none%27 stroke=%27%23fff%27 stroke-width=%272.6%27 stroke-linecap=%27round%27/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="mark" aria-hidden="true">
+      <svg viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round">
+        <path d="M10 12c5 0 5 16 10 16s5-16 10-16"/>
+        <path d="M10 28c5 0 5-16 10-16s5 16 10 16"/>
+        <path d="M14.5 15.5h11M14.5 24.5h11" stroke-width="1.8" opacity=".75"/>
+      </svg>
+    </div>
+    <div>
+      <h1>ChromaPilot <span>interface</span></h1>
+      <p class="sub">a live window into the LangGraph epigenomics agent</p>
+    </div>
+  </div>
+  <div class="status-cluster">
+    <span class="pill" id="model-pill" title="LLM driving the agent"><span class="dot accent"></span><span id="model-name">…</span></span>
+    <span class="pill" id="boot-pill"><span class="dot" id="boot-dot"></span><span id="boot-text">starting…</span></span>
+  </div>
+</header>
+
+<!-- ============================ LANDING ============================ -->
+<section id="landing" class="landing">
+  <div class="landing-card">
+    <div class="eyebrow">Epigenomics analysis agent</div>
+    <h2>What would you like to analyze?</h2>
+    <p class="landing-sub">Describe your data, the goal, the reference genome (hg38&nbsp;/&nbsp;mm10) and which
+      samples to process. The agent drafts a plan and asks you to review it before anything runs.</p>
+    <div id="boot-error" class="boot-error" hidden>
+      <strong>The agent could not start.</strong>
+      <pre id="boot-error-msg"></pre>
+      <div class="boot-error-hint">Most often this means <code>config.yaml</code> is missing (it is
+        git-ignored, so it isn't pulled): run <code>cp config.example.yaml config.yaml</code> in the
+        interface folder, set your <code>llm.api_key</code>, then restart.</div>
+    </div>
+    <div class="field">
+      <textarea id="request" rows="7" spellcheck="false"
+        placeholder="e.g. We have raw paired-end FASTQ files from a Hiplex Cut&Tag experiment at /path/to/fastq and the barcode file at /path/to/barcode.csv. Align to hg38 and produce bigWig coverage tracks for samples C1 and C2. Write all results to /path/to/output."></textarea>
+      <div class="field-foot">
+        <span class="examples-label">Try an example</span>
+        <div class="examples" id="examples"></div>
+        <span class="kbd-hint"><kbd>Ctrl</kbd>+<kbd>Enter</kbd> to submit</span>
+      </div>
+    </div>
+    <div class="landing-row">
+      <label class="outdir">
+        <span>Output directory <i>optional — can also be written in the prompt</i></span>
+        <input id="outdir" type="text" placeholder="(auto: interface/runs/…)" spellcheck="false">
+      </label>
+      <label class="modelsel" id="modelsel-wrap" hidden>
+        <span>Model</span>
+        <select id="model-select"></select>
+      </label>
+      <button id="run-btn" class="btn primary big" disabled>Plan my analysis <span class="arrow">→</span></button>
+    </div>
+    <ol class="how">
+      <li><b>1</b><span><strong>Plan</strong> the planner maps your request onto pipeline tools</span></li>
+      <li><b>2</b><span><strong>Review</strong> approve the plan or ask for changes</span></li>
+      <li><b>3</b><span><strong>Execute</strong> tools run on this node; progress streams live</span></li>
+      <li><b>4</b><span><strong>Results</strong> figures and files with their server paths</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================ WORKSPACE ============================ -->
+<div id="workspace" class="workspace hidden">
+
+  <!-- compact prompt summary + run controls -->
+  <div class="promptbar">
+    <button id="new-run" class="btn ghost">← New analysis</button>
+    <div class="pb-main">
+      <div class="pb-text" id="pb-text" title="your request"></div>
+      <div class="pb-out" id="pb-out" hidden><span class="lbl">output</span><code id="pb-outdir"></code></div>
+    </div>
+    <button id="stop-btn" class="btn ghost danger" disabled>Stop</button>
+  </div>
+
+  <!-- live status bar -->
+  <div id="runbar" class="runbar hidden">
+    <span class="spinner" id="run-spinner"></span>
+    <div class="rb-main">
+      <div class="rb-phase" id="rb-phase">Starting…</div>
+      <div class="rb-ticker" id="rb-ticker"></div>
+    </div>
+    <span class="rb-elapsed" id="rb-elapsed" title="elapsed">0s</span>
+  </div>
+
+  <!-- pipeline map (fits the width — no horizontal scrolling) -->
+  <section class="panel map-panel">
+    <div class="panel-head">
+      <h2><i class="ic" data-icon="map"></i>Pipeline map</h2>
+      <span class="hint">the tools the agent plans over — highlighted as your plan runs</span>
+      <span class="legend">
+        <span><i class="lg planned"></i>planned</span>
+        <span><i class="lg active"></i>running</span>
+        <span><i class="lg done"></i>done</span>
+        <span class="sep"></span>
+        <span id="proto-legend"></span>
+      </span>
+    </div>
+    <div class="map-scroll"><svg id="dag" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="pipeline dependency graph"></svg></div>
+  </section>
+
+  <!-- three columns -->
+  <main class="columns">
+
+    <aside class="col col-left">
+      <section class="panel">
+        <div class="panel-head">
+          <h2><i class="ic" data-icon="agent"></i>Agent graph</h2>
+          <span class="hint">how the agent reasons</span>
+        </div>
+        <div class="role-legend">
+          <span><i style="background:var(--planner)"></i>planner</span>
+          <span><i style="background:var(--validator)"></i>validator</span>
+          <span><i style="background:var(--executor)"></i>executor</span>
+          <span><i style="background:var(--reporter)"></i>reporter</span>
+        </div>
+        <div id="agent-graph" class="agent-graph"></div>
+      </section>
+      <section class="panel">
+        <div class="panel-head collapsible" data-target="tool-catalog">
+          <h2><i class="ic" data-icon="book"></i>Tool catalog</h2>
+          <span class="hint" id="tool-count"></span>
+          <span class="chev">▸</span>
+        </div>
+        <div id="tool-catalog" class="tool-catalog collapsed"></div>
+      </section>
+    </aside>
+
+    <section class="col col-center">
+      <div id="interrupt-zone"></div>
+      <section class="panel activity">
+        <div class="panel-head">
+          <h2><i class="ic" data-icon="activity"></i>Activity</h2>
+          <span class="hint" id="activity-count"></span>
+          <label class="toggle"><input type="checkbox" id="show-console"> raw console</label>
+        </div>
+        <div id="log" class="log">
+          <div class="empty">The agent's reasoning, tool calls and results stream here.</div>
+        </div>
+      </section>
+    </section>
+
+    <aside class="col col-right">
+      <section class="panel">
+        <div class="panel-head">
+          <h2><i class="ic" data-icon="plan"></i>Plan &amp; progress</h2>
+          <span id="plan-meta" class="hint"></span>
+        </div>
+        <div class="progress" id="progress" hidden>
+          <div class="bar"><i id="progress-fill"></i></div>
+          <span id="progress-text"></span>
+        </div>
+        <div id="plan" class="plan"><div class="empty">The agent's step-by-step plan appears here; each step is ticked off as it runs.</div></div>
+      </section>
+      <section class="panel" id="results-panel">
+        <div class="panel-head">
+          <h2><i class="ic" data-icon="image"></i>Results &amp; figures</h2>
+          <span id="artifact-count" class="hint"></span>
+          <button id="open-report" class="btn small" disabled>View report</button>
+        </div>
+        <div id="figures" class="figures"></div>
+        <div id="files" class="files"><div class="empty">Figures and files the run writes appear here with their server paths — click a figure to view it.</div></div>
+      </section>
+    </aside>
+
+  </main>
+</div>
+
+<!-- figure viewer -->
+<div id="lightbox" class="lightbox hidden" role="dialog" aria-modal="true">
+  <button class="lb-close" id="lb-close" title="close (Esc)">✕</button>
+  <div class="lb-inner" id="lb-inner">
+    <img id="lb-img" alt="">
+    <div class="lb-cap"><code id="lb-cap"></code><button class="btn small" id="lb-copy">Copy path</button></div>
+  </div>
+</div>
+
+<!-- consolidated report -->
+<div id="report" class="report-modal hidden" role="dialog" aria-modal="true">
+  <div class="rp-sheet">
+    <div class="rp-bar">
+      <strong>Analysis report</strong>
+      <span class="rp-source" id="rp-source"></span>
+      <span class="rp-spacer"></span>
+      <button id="rp-open" class="btn small" hidden>Open in new tab</button>
+      <button id="rp-print" class="btn small">Print / save PDF</button>
+      <button id="rp-close" class="btn ghost small">Close</button>
+    </div>
+    <div class="rp-body" id="rp-body"></div>
+  </div>
+</div>
+
+<div id="toast" class="toast" role="status"></div>
+<script src="/static/app.js"></script>
+</body>
+</html>

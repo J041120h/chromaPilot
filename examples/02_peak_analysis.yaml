@@ -1,0 +1,37 @@
+# Example 2 — Peak calling, pathway enrichment and differential peak analysis.
+#
+#   python chromapilot/agent.py -r examples/02_peak_analysis.yaml
+#
+# A longer plan: preprocessing, then peak profiling per CRF pair, then a
+# group comparison. Expect a plan of ~10 steps.
+
+prompt_template: >
+  We have raw paired-end FASTQ files generated from Hiplex Cut&Tag experiments,
+  located at:
+
+  /path/to/hiplex_data/fastq
+
+  The barcode configuration file for the Hiplex Cut&Tag experiment is located at:
+
+  /path/to/hiplex_data/barcode/barcode.csv
+
+  The goal is to identify peak regions for each CRF pair using hg38 as the
+  reference genome. Based on the identified peaks, please perform pathway
+  enrichment analysis to characterize the biological functions associated with
+  each CRF pair.
+
+  Furthermore, differential peak analysis between the C and T groups should be
+  conducted to identify regions exhibiting significant chromatin state
+  alterations.
+
+  The dataset contains four samples: C1, C2, T1, and T2.
+
+  All intermediate files and final results should be written to the following
+  output directory:
+
+root_output_dir: /path/to/results/peak_analysis
+auto_feedback: "good"
+n_runs: 1
+max_wall_time_s: 15000
+max_steps: 2000
+max_interrupts: 20

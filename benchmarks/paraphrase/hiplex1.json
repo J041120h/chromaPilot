@@ -1,0 +1,18 @@
+{
+  "prompts": {
+    "user1": "Please take the fastq files at\n\n/path/to/hiplex_data/fastq\n\nand the barcode files at\n\n/path/to/hiplex_data/barcode/barcode.csv\n\nfrom a Hiplex CUT&Tag experiment.\n\nDo demultiplex and alignment using hg38 reference genome for all 4 samples and output the intermediate and result files to\n\n",
+    "user2": "I have raw sequence files from a hi-plex cut&tag experiment in\n\n/path/to/hiplex_data/fastq\n\ntogether with the barcode data as\n\n/path/to/hiplex_data/barcode/barcode.csv\n\nI hope you can do alignment taking human genome as reference and export results to\n\n",
+    "user3": "Given the hiplex cut&tag fastq file path under:\n\n/path/to/hiplex_data/fastq\n\nand barcode path under:\n\n/path/to/hiplex_data/barcode/barcode.csv\n\nUse hg38 and give me the bam files into:\n\n",
+    "user4": "I have a set of raw sequence files from hi-plex cut&tag in\n\n/path/to/hiplex_data/fastq\n\nand the barcode file in\n\n/path/to/hiplex_data/barcode/barcode.csv\n\nI wish to map the sequence reads to hg38.\n\nSave results in\n\n",
+    "user5": "Use FASTQ files at\n\n/path/to/hiplex_data/fastq\n\nand barcode file at\n\n/path/to/hiplex_data/barcode/barcode.csv\n\nfrom Hiplex CUT&Tag sequencing.\n\nAlign to hg38 and produce bams to the output directory\n\n",
+    "user6": "I have raw FASTQ files from Hiplex experiment in\n\n/path/to/hiplex_data/fastq\n\nand barcode file at:\n\n/path/to/hiplex_data/barcode/barcode.csv\n\nI want bam files with hg38 as the reference. \n\nDeposit intermediate files and outputs in:\n\n",
+    "user7": "Hiplex CUT&Tag raw fastq files and barcodes at:\n\n/path/to/hiplex_data/fastq\n\n/path/to/hiplex_data/barcode/barcode.csv\n\nhg38 reference, give me the aligned bam files.\n\nOutput to:\n\n"
+  },
+  "prompt_vars": {},
+  "root_output_dir": "/path/to/results/paraphrase/hiplex1",
+  "auto_feedback": "good",
+  "n_runs": 3,
+  "max_wall_time_s": 15000,
+  "max_steps": 2000,
+  "max_interrupts": 20
+}

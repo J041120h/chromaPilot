@@ -1,0 +1,10 @@
+{
+  "prompt_template": "We have a 10x CellRanger ARC output file, located at:\n\n/path/to/scrna_data/filtered_feature_bc_matrix.h5\n\nPlease perform basic QC on the gene expression data: filter cells with fewer than 200 genes, filter genes in fewer than 3 cells, calculate mitochondrial percentage, and remove cells above 20%. Generate corresponding visualization.\n\nThe output directory is:\n\n",
+  "prompt_vars": {},
+  "root_output_dir": "/path/to/results/pipelines/autocode3",
+  "auto_feedback": "good",
+  "n_runs": 5,
+  "max_wall_time_s": 9000,
+  "max_steps": 2000,
+  "max_interrupts": 10
+}

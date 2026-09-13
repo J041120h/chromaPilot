@@ -1,0 +1,39 @@
+# Example 1 — Hiplex CUT&Tag preprocessing: raw FASTQ to aligned BAM.
+#
+#   python chromapilot/agent.py -r examples/01_hiplex_preprocessing.yaml
+#
+# This is the simplest end-to-end request. The planner covers it with the
+# predefined tool library (no code generation), so it reaches the plan-review
+# pause in roughly 20 seconds.
+#
+# Edit the two /path/to/... lines and root_output_dir before running.
+
+prompt_template: >
+  We have raw paired-end FASTQ files generated from Hiplex Cut&Tag experiments,
+  located at:
+
+  /path/to/hiplex_data/fastq
+
+  The barcode configuration file for the Hiplex Cut&Tag experiment is located at:
+
+  /path/to/hiplex_data/barcode/barcode.csv
+
+  The goal is to process these data and obtain aligned BAM files using hg38 as
+  the reference genome.
+
+  The dataset contains four samples: C1, C2, T1, and T2.
+
+  All intermediate files and final results should be written to the following
+  output directory:
+
+# Where results go. Each run gets its own timestamped sub-directory.
+root_output_dir: /path/to/results/hiplex_preprocessing
+
+# What to answer at every human-review pause. Use --interactive on the command
+# line to answer them yourself instead.
+auto_feedback: "good"
+
+n_runs: 1
+max_wall_time_s: 15000
+max_steps: 2000
+max_interrupts: 20

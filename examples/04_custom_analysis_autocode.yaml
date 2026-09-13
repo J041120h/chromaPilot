@@ -1,0 +1,31 @@
+# Example 4 — An analysis with no matching tool, handled by code generation.
+#
+#   python chromapilot/agent.py -r examples/04_custom_analysis_autocode.yaml
+#
+# Nothing in the tool library computes a signal correlation between two mark
+# combinations, so the planner routes this step to the autocode generator: it
+# retrieves relevant documentation, writes a script, runs it, checks the result
+# and debugs it until it succeeds. You are asked to approve the code before it
+# runs. Planning takes longer here (~60-90 s) because RAG retrieval is used.
+
+prompt_template: >
+  We have BAM files corresponding to the H3K4me3-H3K4me3 and H3K4me1-H3K4me1
+  mark combinations in sample C1, located at:
+
+  /path/to/hiplex_data/autocode_bam
+
+  The goal is to compare these two chromatin states by defining a union set of
+  their peaks and assessing the correlation of their read signals across these
+  regions. The correlation results should be visualized as figures.
+
+  The reference genome is hg38.
+
+  All intermediate files and final results should be written to the following
+  output directory:
+
+root_output_dir: /path/to/results/custom_correlation
+auto_feedback: "good"
+n_runs: 1
+max_wall_time_s: 15000
+max_steps: 2000
+max_interrupts: 20

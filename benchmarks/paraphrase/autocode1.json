@@ -1,0 +1,18 @@
+{
+  "prompts": {
+    "user1": "Please take the BAM files at\n\n/path/to/hiplex_data/autocode_bam\n\ncorresponding to the H3K4me3-H3K4me3 and H3K4me1-H3K4me1 mark combinations in sample C1. Compare these two chromatin states by defining a union set of their peaks and assessing the correlation of their read signals across these regions (the correlation results should be visualized as figures).\n\nUse hg38 human reference genome and save all intermediate and result files to\n\n",
+    "user2": "I have BAM files from a hi-plex cut&tag experiment in\n\n/path/to/hiplex_data/autocode_bam\n\nThese are for the H3K4me1-H3K4me1 and H3K4me3-H3K4me3 mark pairs. The sample is C1. I hope you can compare these two chromatin states. Pool the peaks from both, then see how well their read signals correlate across the pooled regions. Can you also provide plots of the correlation. Reference genome is human genome, and save everything to\n\n",
+    "user3": "Here's the BAM files at:\n\n/path/to/hiplex_data/autocode_bam\n\nfor H3K4me1-H3K4me1 and H3K4me3-H3K4me3, sample: C1. Merge peaks from the two, compute signal correlation, visualize it. hg38 reference. Write results into:\n\n",
+    "user4": "I have a set of BAM files from hi-plex cut&tag in\n\n/path/to/hiplex_data/autocode_bam\n\nThese correspond to two mark combinations from sample C1: H3K4me3-H3K4me3 and H3K4me1-H3K4me1. I want to compare these two chromatin states so I can see how similar or different their localization patterns are. Please first take the union of all peaks across both mark combinations, and then quantify how strongly their read signals track each other within those merged regions, producing visualization figures so I can see the result directly. Use hg38 reference genome.\n\nPut the output in\n\n",
+    "user5": "Use BAM files at\n\n/path/to/hiplex_data/autocode_bam\n\nfor H3K4me1-H3K4me1 and H3K4me3-H3K4me3 mark combinations, C1 sample. Reference is hg38, call peaks per mark combination, build union peak set across the two, correlate read coverage over these regions as figures, save all results to the output directory\n\n",
+    "user6": "I have BAM files at:\n\n/path/to/hiplex_data/autocode_bam\n\nThey correspond to H3K4me3-H3K4me3 and H3K4me1-H3K4me1 for sample C1 with hg38 as reference. I need to take the union of peak sets from both combinations, then check the correlation between their read signals over these unioned regions, and plot the correlation.\n\nDeposit intermediate files and outputs in:\n\n",
+    "user7": "BAMs at: /path/to/hiplex_data/autocode_bam\nMarks: H3K4me1-H3K4me1 and H3K4me3-H3K4me3\nSample: C1\nRef: hg38\nTask: union peaks across the two, correlate read signals over union regions, plot correlation figures.\n\nOutput to:\n\n"
+  },
+  "prompt_vars": {},
+  "root_output_dir": "/path/to/results/paraphrase/autocode1",
+  "auto_feedback": "good",
+  "n_runs": 3,
+  "max_wall_time_s": 9000,
+  "max_steps": 2000,
+  "max_interrupts": 10
+}

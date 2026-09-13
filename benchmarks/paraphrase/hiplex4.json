@@ -1,0 +1,18 @@
+{
+  "prompts": {
+    "user1": "Using fastq files at\n\n/path/to/hiplex_data/fastq\n\nand barcode from\n\n\n\n/path/to/hiplex_data/barcode/barcode.csv\n\nfrom a Hiplex CUT&Tag experiment.\n\nIdentify differential regions between C and T samples by first performing biclustering analysis in C1 and C2 to get CRF pair clusters, and then doing differential analysis to identify genomic regions that are different between C and T.\n\nUse hg38 human reference genome and save all intermediate and result files to\n\n",
+    "user2": "I have raw sequence files from a hi-plex cut&tag experiment in\n\n/path/to/hiplex_data/fastq\n\ntogether with the barcode data as\n\n/path/to/hiplex_data/barcode/barcode.csv\n\nThe data has samples from two conditions: C1, C2 vs T1, T2. Cluster regions and CRF pairs based on the group C, and then identify differential signals between the two conditions. Take human genome as reference and save everything to\n\n",
+    "user3": "Give you the hiplex cut&tag fastq files and barcode for 4 samples.\n\nThe fastq file paths are under\n\n/path/to/hiplex_data/fastq\n\nand barcode path under:\n\n/path/to/hiplex_data/barcode/barcode.csv\n\nFirst perform the biclustering analysis on C1 and C2. Then use these clustering results to compare C1 C2 with T1 T2.\n\nThe reference genome is hg38, write results into:\n\n",
+    "user4": "I have a set of raw sequence files from hi-plex cut&tag in\n\n/path/to/hiplex_data/fastq\n\nand the barcode file in\n\n/path/to/hiplex_data/barcode/barcode.csv\n\nI want to do differential analysis between C group, which is C1 and C2, versus T group, T1 and T2. Use hg38 reference genome. Also, the biclustering analysis should be done within C1 and C2, so we can find the CRF pairs that have differential patterns between groups. Afterwards, do pathway enrichment analysis on the differential regions so I evaluate the biological processes associated with the results.\n\nI want the output of this analysis in\n\n",
+    "user5": "Use FASTQ files at\n\n/path/to/hiplex_data/fastq\n\nand barcode file at\n\n/path/to/hiplex_data/barcode/barcode.csv\n\nfrom Hiplex CUT&Tag sequencing.\n\nAlign to hg38, perform biclustering on C1 and C2 to identify localization patterns, then compare C group (C1, C2) vs T group (T1, T2) to identify differential regions, finally perform pathway enrichment on differential regions and save all results to the output directory\n\n",
+    "user6": "I have raw FASTQ files from Hiplex experiment in\n\n/path/to/hiplex_data/fastq\n\nand barcode file at:\n\n/path/to/hiplex_data/barcode/barcode.csv\n\nProcess the data using hg38 as reference. Perform biclustering analysis on C1 and C2, then do differential analysis comparing with T1 and T2.\n\nDeposit intermediate files and outputs in:\n\n",
+    "user7": "Hiplex CUT&Tag raw fastq files and barcodes at:\n\n/path/to/hiplex_data/fastq\n\n/path/to/hiplex_data/barcode/barcode.csv\n\nhg38 reference. Perform the differential analysis between C and T samples, based on the results of biclustering under C1,C2 conditions.\n\nOutput to:\n\n"
+  },
+  "prompt_vars": {},
+  "root_output_dir": "/path/to/results/paraphrase/hiplex4",
+  "auto_feedback": "good",
+  "n_runs": 3,
+  "max_wall_time_s": 25000,
+  "max_steps": 2000,
+  "max_interrupts": 50
+}

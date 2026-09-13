@@ -1,0 +1,30 @@
+Dependency Relationships
+========================
+
+
+========================
+Hiplex Cut&Tag
+========================
+- create_barcode_fasta → demultiplex_reads
+- demultiplex_reads → identify_adapter
+- identify_adapter → align_reads
+- align_reads → convert_bam_to_bed
+- convert_bam_to_bed → convert_bed_to_bedgraph
+- convert_bam_to_bed → convert_bed_to_bigwig
+- align_reads → build_count_matrix
+- build_count_matrix → differential_analysis
+- build_count_matrix → biclustering_wrapper
+- biclustering_wrapper → differential_analysis
+- convert_bed_to_bedgraph → peak_profiling
+- peak_profiling → peak_differential_analysis
+
+========================
+ChIP-DIP
+========================
+- chipdip_prep → convert_bam_to_bed
+- convert_bam_to_bed → convert_bed_to_bedgraph
+- convert_bam_to_bed → convert_bed_to_bigwig
+- chipdip_prep → build_count_matrix
+- build_count_matrix → differential_analysis
+- convert_bed_to_bedgraph → peak_profiling
+- peak_profiling → peak_differential_analysis
