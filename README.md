@@ -185,9 +185,11 @@ MIT — see [LICENSE](LICENSE).
 
 Third-party components keep their own licenses:
 
-* `tools/chipdip_prep/` bundles the ChIP-DIP Snakemake workflow and the
-  `BarcodeIdentification` tool from the Guttman Lab (Caltech). See
-  [`tools/chipdip_prep/NOTICE.md`](tools/chipdip_prep/NOTICE.md).
+* `tools/chipdip_prep/` bundles the
+  [ChIP-DIP Snakemake workflow](https://github.com/GuttmanLab/chipdip-pipeline)
+  from the Guttman Lab (Caltech), MIT licensed, © 2023 GuttmanLab. Work using it
+  should also cite Perez *et al.*, *Nat Genet* 2024 —
+  see [`tools/chipdip_prep/NOTICE.md`](tools/chipdip_prep/NOTICE.md).
 * The R analysis routines are provided by
   [multiEpiCore](https://github.com/Qingjie-Yu/multiEpiCore), installed by
   `setup.sh`.

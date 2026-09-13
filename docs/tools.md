@@ -98,13 +98,6 @@ directory. The heavier statistical routines call R through
 `chipdip_prep` builds that workflow's own conda environment under
 `tools/chipdip_prep/env/` (several GB, one time, git-ignored).
 
-### Modules present but not registered
-
-`tools/` also contains `qc.py`, `calculate_mapping_rate.py`, `seacr_peak.py` and
-`env_tools.py`. They are not imported by `chromapilot/agent.py` and the planner
-cannot call them — `peak_profiling` supersedes `seacr_peak`. They are kept for
-reference and for direct use from your own scripts.
-
 ## Adding a tool
 
 1. Write `tools/my_tool.py` as a `@tool`-decorated function taking `out_dir` and,
