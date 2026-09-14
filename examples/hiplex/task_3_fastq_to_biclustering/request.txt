@@ -1,0 +1,17 @@
+We have raw paired-end FASTQ files generated from Hiplex Cut&Tag experiments, located at:
+
+/path/to/fastq
+
+The barcode configuration file for the Hiplex Cut&Tag experiment is located at:
+
+/path/to/barcode/barcode.csv
+
+The goal is to process these data and perform biclustering analysis on genomic regions to identify groups of regions and CRF pairs that share similar localization patterns across the genome. The reference genome to use is hg38. 
+
+For each localization pattern, please summarize the genomic context of the associated regions using both genic and cCRE annotations, including features such as promoters, gene bodies, intergenic regions, and candidate cis-regulatory elements.
+
+The dataset contains four samples: C1, C2, T1, and T2. For this task, the analysis should focus only on C1 and C2, which should be jointly analyzed for biclustering.
+
+All intermediate files and final results should be written to the following output directory:
+
+/path/to/output

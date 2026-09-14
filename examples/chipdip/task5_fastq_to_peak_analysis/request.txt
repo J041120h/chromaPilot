@@ -1,0 +1,24 @@
+We have raw paired-end FASTQ files generated from ChIP-DIP experiments with a UMI length of 8, located at:
+
+/path/to/fastq
+
+The barcode configuration file is located at:
+
+/path/to/config.txt
+
+The barcode format file is located at:
+
+/path/to/format.txt
+
+The DPM and BPM barcode FASTA files are located at:
+
+/path/to/dpm96.fasta
+/path/to/bpm.fasta
+
+The dataset contains three samples: ohr, 6hr, and 24hr.
+
+The goal is to identify peak regions for each CRF pair using mm10 as the reference genome. Based on the identified peaks, please perform pathway enrichment analysis to characterize the biological functions associated with each CRF pair.\
+
+All intermediate files and final results should be written to the following output directory:
+
+/path/to/output

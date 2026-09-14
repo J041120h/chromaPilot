@@ -1,0 +1,11 @@
+I have bam files with mm10 as reference genome, located at:
+
+/path/to/bam
+
+Plot genome tracks grouped by CRF (H3K27ac, H2BK12ac, H4K5ac) and ordered by time (0hr, 6hr, 24hr). Use fill-style tracks (gray/blue/purple), one sample one color, add y=0 baselines, keep consistent y-ranges (0-9 for H3K27ac, 0-3 for H2BK12ac,/H4K5ac), one time one track (do not mix or combine), restrict to chr5:92,320,000--92,380,000, include gene annotations from:
+
+/path/to/gencode.vM25.basic.annotation.gtf
+
+Save to:
+
+/path/to/output

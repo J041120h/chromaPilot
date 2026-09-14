@@ -1,0 +1,11 @@
+We have BAM files corresponding to the H3K4me3-H3K4me3 and H3K4me1-H3K4me1 mark combinations in sample C1, located at:
+
+/path/to/bam
+
+The goal is to compare these two chromatin states by defining a union set of their peaks and assessing the correlation of their read signals across these regions. The correlation results should be visualized as figures.
+
+The reference genome is hg38.
+
+All intermediate files and final results should be written to the following output directory:
+
+/path/to/output

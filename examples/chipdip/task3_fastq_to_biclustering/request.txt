@@ -1,0 +1,24 @@
+We have raw paired-end FASTQ files generated from ChIP-DIP experiments with a UMI length of 8, located at:
+
+/path/to/fastq
+
+The barcode configuration file is located at:
+
+/path/to/config.txt
+
+The barcode format file is located at:
+
+/path/to/format.txt
+
+The DPM and BPM barcode FASTA files are located at:
+
+/path/to/dpm96.fasta
+/path/to/bpm.fasta
+
+The dataset contains three samples: ohr, 6hr, and 24hr.
+
+Perform biclustering analysis on each sample separately to identify groups of regions and CRF pairs that share similar localization patterns across the genome. The reference genome to use is mm10.
+
+All intermediate files and final results should be written to the following output directory:
+
+/path/to/output

@@ -1,0 +1,17 @@
+We have raw paired-end FASTQ files generated from Hiplex Cut&Tag experiments, located at:
+
+/path/to/fastq
+
+The barcode configuration file for the Hiplex Cut&Tag experiment is located at:
+
+/path/to/barcode/barcode.csv
+
+The goal is to identify peak regions for each CRF pair using hg38 as the reference genome. Based on the identified peaks, please perform pathway enrichment analysis to characterize the biological functions associated with each CRF pair.
+
+Furthermore, differential peak analysis between the C and T groups should be conducted to identify regions exhibiting significant chromatin state alterations.
+
+The dataset contains four samples: C1, C2, T1, and T2.
+
+All intermediate files and final results should be written to the following output directory:
+
+/path/to/output

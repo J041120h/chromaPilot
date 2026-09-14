@@ -1,0 +1,17 @@
+We have raw paired-end FASTQ files generated from Hiplex Cut&Tag experiments, located at:
+
+/path/to/fastq
+
+The barcode configuration file for the Hiplex Cut&Tag experiment is located at:
+
+/path/to/barcode/barcode.csv
+
+The analysis aims to identify genomic regions that differ between the C group and the T group, using hg38 as the reference genome.
+
+The dataset contains four samples: C1, C2, T1, and T2. Biclustering analysis should first be performed jointly on C1 and C2 to identify CRF pair clusters or localization patterns across genomic regions. These patterns should then be used to compare the C group (C1, C2) with the T group (T1, T2) to identify differential regions.
+
+Pathway enrichment analysis should be performed on the differential regions to characterize the biological processes associated with these changes.
+
+All intermediate files and final results should be written to the following output directory:
+
+/path/to/output

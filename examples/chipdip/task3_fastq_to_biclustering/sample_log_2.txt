@@ -1,0 +1,466 @@
+
+==================== RUN 2/2 ====================
+Planned output directory for this run: /path/to/tools/chipdip1/test_run_2
+Initial prompt for this run:
+We have raw paired-end FASTQ files generated from ChIP-DIP experiments with a UMI length of 8, located at:
+
+/path/to/fastq
+
+The barcode configuration file is located at:
+
+/path/to/mDC_25Ab_config.txt
+
+The barcode format file is located at:
+
+/path/to/mDC_25Ab_format.txt
+
+The DPM and BPM barcode FASTA files are located at:
+
+/path/to/dpm96.fasta
+/path/to/bpm.fasta
+
+The dataset contains three samples: ohr, 6hr, and 24hr.
+
+Perform biclustering analysis on each sample separately to identify groups of regions and CRF pairs that share similar localization patterns across the genome. The reference genome to use is mm10.
+
+All intermediate files and final results should be written to the following output directory:
+
+/path/to/tools/chipdip1/test_run_2
+
+Planner is deriving plan
+
+[Extractor] did_expand: True
+[Extractor] Final input_file_path to use: ['/path/to/fastq/24hr_R2.fastq.gz', '/path/to/fastq/0hr_R1.fastq.gz', '/path/to/fastq/6hr_R2.fastq.gz', '/path/to/fastq/6hr_R1.fastq.gz', '/path/to/fastq/0hr_R2.fastq.gz', '/path/to/fastq/24hr_R1.fastq.gz', '/path/to/mDC_25Ab_config.txt', '/path/to/mDC_25Ab_format.txt', '/path/to/dpm96.fasta', '/path/to/bpm.fasta']
+🧠 AiMessage:
+Step 1. Function: chipdip_prep
+- Inputs:
+  - sample_list: ["0hr", "6hr", "24hr"]
+  - fastq_r1_list:
+    - /path/to/fastq/0hr_R1.fastq.gz
+    - /path/to/fastq/6hr_R1.fastq.gz
+    - /path/to/fastq/24hr_R1.fastq.gz
+  - fastq_r2_list:
+    - /path/to/fastq/0hr_R2.fastq.gz
+    - /path/to/fastq/6hr_R2.fastq.gz
+    - /path/to/fastq/24hr_R2.fastq.gz
+  - out_dir: /path/to/tools/chipdip1/test_run_2
+  - ref_genome: mm10
+  - barcode_config: /path/to/mDC_25Ab_config.txt
+  - dpm_fasta: /path/to/dpm96.fasta
+  - bpm_fasta: /path/to/bpm.fasta
+  - barcode_format: /path/to/mDC_25Ab_format.txt
+  - umi_length: 8
+- Outputs:
+  - bam_dirs (per-sample BAM directories):
+    - /path/to/tools/chipdip1/test_run_2/chipdip_prep/splitbams/0hr/
+    - /path/to/tools/chipdip1/test_run_2/chipdip_prep/splitbams/6hr/
+    - /path/to/tools/chipdip1/test_run_2/chipdip_prep/splitbams/24hr/
+  - log_out:
+    - /path/to/tools/chipdip1/test_run_2/log/chipdip_prep.log
+
+Step 2. Function: build_count_matrix (sample: 0hr)
+- Inputs:
+  - bam_dir: /path/to/tools/chipdip1/test_run_2/chipdip_prep/splitbams/0hr/
+  - sample: 0hr
+  - out_dir: /path/to/tools/chipdip1/test_run_2
+  - ref_genome: mm10
+- Outputs:
+  - count_matrix_file: /path/to/tools/chipdip1/test_run_2/count_matrix/0hr/0hr_Count_Matrix_800.feather
+  - log_out: /path/to/tools/chipdip1/test_run_2/log/0hr_build_count_matrix.log
+
+Step 3. Function: biclustering_wrapper (group_tag: 0hr)
+- Inputs:
+  - count_matrix_files:
+    - /path/to/tools/chipdip1/test_run_2/count_matrix/0hr/0hr_Count_Matrix_800.feather
+  - group_tag: 0hr
+  - out_dir: /path/to/tools/chipdip1/test_run_2
+  - ref_genome: mm10
+- Outputs:
+  - region_cluster: /path/to/tools/chipdip1/test_run_2/bicluster/0hr/row_table.tsv
+  - pair_cluster: /path/to/tools/chipdip1/test_run_2/bicluster/0hr/col_table.tsv
+  - log_out: /path/to/tools/chipdip1/test_run_2/log/biclustering_wrapper.log
+
+Step 4. Function: build_count_matrix (sample: 6hr)
+- Inputs:
+  - bam_dir: /path/to/tools/chipdip1/test_run_2/chipdip_prep/splitbams/6hr/
+  - sample: 6hr
+  - out_dir: /path/to/tools/chipdip1/test_run_2
+  - ref_genome: mm10
+- Outputs:
+  - count_matrix_file: /path/to/tools/chipdip1/test_run_2/count_matrix/6hr/6hr_Count_Matrix_800.feather
+  - log_out: /path/to/tools/chipdip1/test_run_2/log/6hr_build_count_matrix.log
+
+Step 5. Function: biclustering_wrapper (group_tag: 6hr)
+- Inputs:
+  - count_matrix_files:
+    - /path/to/tools/chipdip1/test_run_2/count_matrix/6hr/6hr_Count_Matrix_800.feather
+  - group_tag: 6hr
+  - out_dir: /path/to/tools/chipdip1/test_run_2
+  - ref_genome: mm10
+- Outputs:
+  - region_cluster: /path/to/tools/chipdip1/test_run_2/bicluster/6hr/row_table.tsv
+  - pair_cluster: /path/to/tools/chipdip1/test_run_2/bicluster/6hr/col_table.tsv
+  - log_out: /path/to/tools/chipdip1/test_run_2/log/biclustering_wrapper.log
+
+Step 6. Function: build_count_matrix (sample: 24hr)
+- Inputs:
+  - bam_dir: /path/to/tools/chipdip1/test_run_2/chipdip_prep/splitbams/24hr/
+  - sample: 24hr
+  - out_dir: /path/to/tools/chipdip1/test_run_2
+  - ref_genome: mm10
+- Outputs:
+  - count_matrix_file: /path/to/tools/chipdip1/test_run_2/count_matrix/24hr/24hr_Count_Matrix_800.feather
+  - log_out: /path/to/tools/chipdip1/test_run_2/log/24hr_build_count_matrix.log
+
+Step 7. Function: biclustering_wrapper (group_tag: 24hr)
+- Inputs:
+  - count_matrix_files:
+    - /path/to/tools/chipdip1/test_run_2/count_matrix/24hr/24hr_Count_Matrix_800.feather
+  - group_tag: 24hr
+  - out_dir: /path/to/tools/chipdip1/test_run_2
+  - ref_genome: mm10
+- Outputs:
+  - region_cluster: /path/to/tools/chipdip1/test_run_2/bicluster/24hr/row_table.tsv
+  - pair_cluster: /path/to/tools/chipdip1/test_run_2/bicluster/24hr/col_table.tsv
+  - log_out: /path/to/tools/chipdip1/test_run_2/log/biclustering_wrapper.log
+
+Final deliverables
+- For each sample (0hr, 6hr, 24hr):
+  - Biclustering region-to-cluster table: <out_dir>/bicluster/<sample>/row_table.tsv
+  - Biclustering CRF pair-to-cluster table: <out_dir>/bicluster/<sample>/col_table.tsv
+  - Additional plots and annotations may also be produced under <out_dir>/bicluster/<sample>/ when plotting/annotation are enabled by defaults.
+
+Number of samples
+- 3 samples: 0hr, 6hr, 24hr
+
+Required parameters (not provided and without defaults)
+- None
+
+[Extractor] Extracting important information...
+
+🧠 AiMessage:
+
+
+
+
+-------- EXTRACTED FIELDS ------
+
+Overall plan: Preprocess paired-end ChIP-DIP FASTQs with UMI length 8 to build per-sample count matrices and perform biclustering on 0hr, 6hr, and 24hr to identify region and CRF pair clusters using mm10, saving outputs to the specified directory.
+
+Number of sample: 3
+
+Input file path(s): ['/path/to/fastq/24hr_R2.fastq.gz', '/path/to/fastq/0hr_R1.fastq.gz', '/path/to/fastq/6hr_R2.fastq.gz', '/path/to/fastq/6hr_R1.fastq.gz', '/path/to/fastq/0hr_R2.fastq.gz', '/path/to/fastq/24hr_R1.fastq.gz', '/path/to/mDC_25Ab_config.txt', '/path/to/mDC_25Ab_format.txt', '/path/to/dpm96.fasta', '/path/to/bpm.fasta']
+
+Required parameters: 
+
+Output_dir: /path/to/tools/chipdip1/test_run_2
+
+--------------------------------
+
+💬 [AUTO] Responding to interrupt with:
+ good
+
+[User Feedback] Received feedback: good
+
+🧠 AiMessage:
+User is satisfied — proceed to validation.
+
+Validator is checking if all needed field is complete
+
+🧠 AiMessage:
+Step 1 (chipdip_prep): All required inputs present (sample_list, paired FASTQs, out_dir, ref_genome, barcode_config, dpm_fasta, bpm_fasta, barcode_format, umi_length). Outputs specified. Input file paths list includes all referenced files. Step 2/4/6 (build_count_matrix): Required inputs (bam_dir from Step 1 outputs, sample, out_dir, ref_genome) are present; outputs specified. Step 3/5/7 (biclustering_wrapper): Inputs (count_matrix_files from prior step, group_tag, out_dir, ref_genome) and outputs present. Number of samples parameter is not required by any function; it is provided but not needed, which is acceptable. At least one input file path is provided and matches needed starting format (FASTQ). Output directory provided and reasonable. No missing elements detected.
+
+✅ Validation passed — nothing else required from you.
+
+[Executor] current_step: Step 1. Function: chipdip_prep
+- Inputs:
+  - sample_list: ["0hr", "6hr", "24hr"]
+  - fastq_r1_list:
+    - /path/to/fastq/0hr_R1.fastq.gz
+    - /path/to/fastq/6hr_R1.fastq.gz
+    - /path/to/fastq/24hr_R1.fastq.gz
+  - fastq_r2_list:
+    - /path/to/fastq/0hr_R2.fastq.gz
+    - /path/to/fastq/6hr_R2.fastq.gz
+    - /path/to/fastq/24hr_R2.fastq.gz
+  - out_dir: /path/to/tools/chipdip1/test_run_2
+  - ref_genome: mm10
+  - barcode_config: /path/to/mDC_25Ab_config.txt
+  - dpm_fasta: /path/to/dpm96.fasta
+  - bpm_fasta: /path/to/bpm.fasta
+  - barcode_format: /path/to/mDC_25Ab_format.txt
+  - umi_length: 8
+- Outputs:
+  - bam_dirs (per-sample BAM directories):
+    - /path/to/tools/chipdip1/test_run_2/chipdip_prep/splitbams/0hr/
+    - /path/to/tools/chipdip1/test_run_2/chipdip_prep/splitbams/6hr/
+    - /path/to/tools/chipdip1/test_run_2/chipdip_prep/splitbams/24hr/
+  - log_out:
+    - /path/to/tools/chipdip1/test_run_2/log/chipdip_prep.log
+[Executor] is_auto_code: False
+[Executor] downstream_plan length: 5242
+[Executor] executed_step_updated: N/A
+[Executor] Executing structured plan with tool call...
+🔧 Tool to be called: chipdip_prep
+🧷 Tool call id: call_a1QC09XYYPooEGWTnLCNGB32
+🧠 AiMessage:
+
+🧠 ToolMessage:
+{"bam_dirs": {"0hr": "/path/to/tools/chipdip1/test_run_2/chipdip_prep/splitbams/0hr", "24hr": "/path/to/tools/chipdip1/test_run_2/chipdip_prep/splitbams/24hr", "6hr": "/path/to/tools/chipdip1/test_run_2/chipdip_prep/splitbams/6hr"}, "log_out": "/path/to/tools/chipdip1/test_run_2/log/chipdip_prep.log"}
+
+[Executor] current_step: Step 2. Function: build_count_matrix (sample: 0hr)
+- Inputs:
+  - bam_dir: /path/to/tools/chipdip1/test_run_2/chipdip_prep/splitbams/0hr/
+  - sample: 0hr
+  - out_dir: /path/to/tools/chipdip1/test_run_2
+  - ref_genome: mm10
+- Outputs:
+  - count_matrix_file: /path/to/tools/chipdip1/test_run_2/count_matrix/0hr/0hr_Count_Matrix_800.feather
+  - log_out: /path/to/tools/chipdip1/test_run_2/log/0hr_build_count_matrix.log
+[Executor] is_auto_code: False
+[Executor] downstream_plan length: 4537
+[Executor] executed_step_updated: Step 1. Function: chipdip_prep
+- Inputs:
+  - sample_list: ["0hr", "6hr", "24hr"]
+  - fastq_r1_list:
+    - /path/to/fastq/0hr_R1.fastq.gz
+    - /dcs07/hongkai
+[Executor] Executing structured plan with tool call...
+🔧 Tool to be called: build_count_matrix
+🧷 Tool call id: call_3maW0mNLZEUZaRxgJMicCfw9
+🧠 AiMessage:
+
+🧠 ToolMessage:
+{"count_matrix_file": "/path/to/tools/chipdip1/test_run_2/count_matrix/0hr/0hr_Count_Matrix_800.feather", "log_out": "/path/to/tools/chipdip1/test_run_2/log/0hr_build_count_matrix.log"}
+
+[Executor] current_step: Step 3. Function: biclustering_wrapper (group_tag: 0hr)
+- Inputs:
+  - count_matrix_files:
+    - /path/to/tools/chipdip1/test_run_2/count_matrix/0hr/0hr_Count_Matrix_800.feather
+  - group_tag: 0hr
+  - out_dir: /path/to/tools/chipdip1/test_run_2
+  - ref_genome: mm10
+- Outputs:
+  - region_cluster: /path/to/tools/chipdip1/test_run_2/bicluster/0hr/row_table.tsv
+  - pair_cluster: /path/to/tools/chipdip1/test_run_2/bicluster/0hr/col_table.tsv
+  - log_out: /path/to/tools/chipdip1/test_run_2/log/biclustering_wrapper.log
+[Executor] is_auto_code: False
+[Executor] downstream_plan length: 3659
+[Executor] executed_step_updated: Step 2. Function: build_count_matrix (sample: 0hr)
+- Inputs:
+  - bam_dir: /path/to/tools/chipdip1/test_run_2/chipdip_prep/splitb
+[Executor] Executing structured plan with tool call...
+🔧 Tool to be called: biclustering_wrapper
+🧷 Tool call id: call_KslrVr3lEpHvDWR3ZQ97bOsi
+🧠 AiMessage:
+
+🧠 ToolMessage:
+{"region_cluster": "/path/to/tools/chipdip1/test_run_2/bicluster/0hr/row_table.tsv", "pair_cluster": "/path/to/tools/chipdip1/test_run_2/bicluster/0hr/col_table.tsv", "heatmap": "/path/to/tools/chipdip1/test_run_2/bicluster/0hr/biclustering_heatmap.pdf", "TFBS_enrichment_heatmap": "/path/to/tools/chipdip1/test_run_2/bicluster/0hr/TFBS_enrichment/TFBS_enrichment.pdf", "distribution_plots": ["/path/to/tools/chipdip1/test_run_2/bicluster/0hr/genomic_distribution/ccre_distribution.pdf", "/path/to/tools/chipdip1/test_run_2/bicluster/0hr/genomic_distribution/genic_distribution.pdf"], "log_out": "/path/to/tools/chipdip1/test_run_2/log/biclustering_wrapper.log"}
+
+[Executor] current_step: Step 4. Function: build_count_matrix (sample: 6hr)
+- Inputs:
+  - bam_dir: /path/to/tools/chipdip1/test_run_2/chipdip_prep/splitbams/6hr/
+  - sample: 6hr
+  - out_dir: /path/to/tools/chipdip1/test_run_2
+  - ref_genome: mm10
+- Outputs:
+  - count_matrix_file: /path/to/tools/chipdip1/test_run_2/count_matrix/6hr/6hr_Count_Matrix_800.feather
+  - log_out: /path/to/tools/chipdip1/test_run_2/log/6hr_build_count_matrix.log
+[Executor] is_auto_code: False
+[Executor] downstream_plan length: 2954
+[Executor] executed_step_updated: Step 3. Function: biclustering_wrapper (group_tag: 0hr)
+- Inputs:
+  - count_matrix_files:
+    - /path/to/tools/chipdip1/round6/test_run_2_20260906_063335_5523
+[Executor] Executing structured plan with tool call...
+🔧 Tool to be called: build_count_matrix
+🧷 Tool call id: call_3yoyTSrNCxz7yeVdvZkmu04w
+🧠 AiMessage:
+
+🧠 ToolMessage:
+{"count_matrix_file": "/path/to/tools/chipdip1/test_run_2/count_matrix/6hr/6hr_Count_Matrix_800.feather", "log_out": "/path/to/tools/chipdip1/test_run_2/log/6hr_build_count_matrix.log"}
+
+[Executor] current_step: Step 5. Function: biclustering_wrapper (group_tag: 6hr)
+- Inputs:
+  - count_matrix_files:
+    - /path/to/tools/chipdip1/test_run_2/count_matrix/6hr/6hr_Count_Matrix_800.feather
+  - group_tag: 6hr
+  - out_dir: /path/to/tools/chipdip1/test_run_2
+  - ref_genome: mm10
+- Outputs:
+  - region_cluster: /path/to/tools/chipdip1/test_run_2/bicluster/6hr/row_table.tsv
+  - pair_cluster: /path/to/tools/chipdip1/test_run_2/bicluster/6hr/col_table.tsv
+  - log_out: /path/to/tools/chipdip1/test_run_2/log/biclustering_wrapper.log
+[Executor] is_auto_code: False
+[Executor] downstream_plan length: 2076
+[Executor] executed_step_updated: Step 4. Function: build_count_matrix (sample: 6hr)
+- Inputs:
+  - bam_dir: /path/to/tools/chipdip1/test_run_2/chipdip_prep/splitb
+[Executor] Executing structured plan with tool call...
+🔧 Tool to be called: biclustering_wrapper
+🧷 Tool call id: call_8ReMMXzp0yHNdxtp4ZGGM3mV
+🧠 AiMessage:
+
+🧠 ToolMessage:
+{"region_cluster": "/path/to/tools/chipdip1/test_run_2/bicluster/6hr/row_table.tsv", "pair_cluster": "/path/to/tools/chipdip1/test_run_2/bicluster/6hr/col_table.tsv", "heatmap": "/path/to/tools/chipdip1/test_run_2/bicluster/6hr/biclustering_heatmap.pdf", "TFBS_enrichment_heatmap": "/path/to/tools/chipdip1/test_run_2/bicluster/6hr/TFBS_enrichment/TFBS_enrichment.pdf", "distribution_plots": ["/path/to/tools/chipdip1/test_run_2/bicluster/6hr/genomic_distribution/ccre_distribution.pdf", "/path/to/tools/chipdip1/test_run_2/bicluster/6hr/genomic_distribution/genic_distribution.pdf"], "log_out": "/path/to/tools/chipdip1/test_run_2/log/biclustering_wrapper.log"}
+
+[Executor] current_step: Step 6. Function: build_count_matrix (sample: 24hr)
+- Inputs:
+  - bam_dir: /path/to/tools/chipdip1/test_run_2/chipdip_prep/splitbams/24hr/
+  - sample: 24hr
+  - out_dir: /path/to/tools/chipdip1/test_run_2
+  - ref_genome: mm10
+- Outputs:
+  - count_matrix_file: /path/to/tools/chipdip1/test_run_2/count_matrix/24hr/24hr_Count_Matrix_800.feather
+  - log_out: /path/to/tools/chipdip1/test_run_2/log/24hr_build_count_matrix.log
+[Executor] is_auto_code: False
+[Executor] downstream_plan length: 1365
+[Executor] executed_step_updated: Step 5. Function: biclustering_wrapper (group_tag: 6hr)
+- Inputs:
+  - count_matrix_files:
+    - /path/to/tools/chipdip1/round6/test_run_2_20260906_063335_5523
+[Executor] Executing structured plan with tool call...
+🔧 Tool to be called: build_count_matrix
+🧷 Tool call id: call_PDNKMeufu4JtMpeWCQo47BJN
+🧠 AiMessage:
+
+🧠 ToolMessage:
+{"count_matrix_file": "/path/to/tools/chipdip1/test_run_2/count_matrix/24hr/24hr_Count_Matrix_800.feather", "log_out": "/path/to/tools/chipdip1/test_run_2/log/24hr_build_count_matrix.log"}
+
+[Executor] current_step: Step 7. Function: biclustering_wrapper (group_tag: 24hr)
+- Inputs:
+  - count_matrix_files:
+    - /path/to/tools/chipdip1/test_run_2/count_matrix/24hr/24hr_Count_Matrix_800.feather
+  - group_tag: 24hr
+  - out_dir: /path/to/tools/chipdip1/test_run_2
+  - ref_genome: mm10
+- Outputs:
+  - region_cluster: /path/to/tools/chipdip1/test_run_2/bicluster/24hr/row_table.tsv
+  - pair_cluster: /path/to/tools/chipdip1/test_run_2/bicluster/24hr/col_table.tsv
+  - log_out: /path/to/tools/chipdip1/test_run_2/log/biclustering_wrapper.log
+[Executor] is_auto_code: False
+[Executor] downstream_plan length: 0
+[Executor] executed_step_updated: Step 6. Function: build_count_matrix (sample: 24hr)
+- Inputs:
+  - bam_dir: /path/to/tools/chipdip1/test_run_2/chipdip_prep/split
+[Executor] Executing structured plan with tool call...
+🔧 Tool to be called: biclustering_wrapper
+🧷 Tool call id: call_A8OhCs4SX5kheyO9z6Hk3c0j
+🧠 AiMessage:
+
+🧠 ToolMessage:
+{"region_cluster": "/path/to/tools/chipdip1/test_run_2/bicluster/24hr/row_table.tsv", "pair_cluster": "/path/to/tools/chipdip1/test_run_2/bicluster/24hr/col_table.tsv", "heatmap": "/path/to/tools/chipdip1/test_run_2/bicluster/24hr/biclustering_heatmap.pdf", "TFBS_enrichment_heatmap": "/path/to/tools/chipdip1/test_run_2/bicluster/24hr/TFBS_enrichment/TFBS_enrichment.pdf", "distribution_plots": ["/path/to/tools/chipdip1/test_run_2/bicluster/24hr/genomic_distribution/ccre_distribution.pdf", "/path/to/tools/chipdip1/test_run_2/bicluster/24hr/genomic_distribution/genic_distribution.pdf"], "log_out": "/path/to/tools/chipdip1/test_run_2/log/biclustering_wrapper.log"}
+
+[Executor] current_step: END
+[Executor] is_auto_code: False
+[Executor] downstream_plan length: 0
+[Executor] executed_step_updated: Step 7. Function: biclustering_wrapper (group_tag: 24hr)
+- Inputs:
+  - count_matrix_files:
+    - /path/to/tools/chipdip1/round6/test_run_2_20260906_063335_552
+[Executor] All steps executed. Moving to replayer.
+🧠 AiMessage:
+All plan steps executed successfully. Moving to END.
+🧠 AiMessage:
+Replayer output saved to /path/to/tools/chipdip1/test_run_2/summary/summary.py
+
+
+🧠 AiMessage: Start Generating Report 
+
+🧠 AiMessage: Interpreting the following figures:
+/path/to/tools/chipdip1/test_run_2/bicluster/0hr/biclustering_heatmap.png
+/path/to/tools/chipdip1/test_run_2/bicluster/0hr/TFBS_enrichment/TFBS_enrichment.png
+/path/to/tools/chipdip1/test_run_2/bicluster/0hr/genomic_distribution/ccre_distribution.png
+/path/to/tools/chipdip1/test_run_2/bicluster/0hr/genomic_distribution/genic_distribution.png
+/path/to/tools/chipdip1/test_run_2/bicluster/6hr/biclustering_heatmap.png
+/path/to/tools/chipdip1/test_run_2/bicluster/6hr/TFBS_enrichment/TFBS_enrichment.png
+/path/to/tools/chipdip1/test_run_2/bicluster/6hr/genomic_distribution/ccre_distribution.png
+/path/to/tools/chipdip1/test_run_2/bicluster/6hr/genomic_distribution/genic_distribution.png
+/path/to/tools/chipdip1/test_run_2/bicluster/24hr/biclustering_heatmap.png
+/path/to/tools/chipdip1/test_run_2/bicluster/24hr/TFBS_enrichment/TFBS_enrichment.png
+/path/to/tools/chipdip1/test_run_2/bicluster/24hr/genomic_distribution/ccre_distribution.png
+/path/to/tools/chipdip1/test_run_2/bicluster/24hr/genomic_distribution/genic_distribution.png
+
+🧠 AiMessage: Generating captions and descriptions 
+
+
+===== /path/to/tools/chipdip1/test_run_2/bicluster/0hr/biclustering_heatmap.png =====
+Caption: Biclustering heatmap reveals baseline chromatin signal modules. Biclustering of the 0 hr count matrix organizes genomic regions (rows) and feature pairs (columns). Most modules show elevated activity in the middle column and reduced activity in the flanking columns, with a smaller number exhibiting uniformly low or inverse patterns.
+Description: At 0 hr, the heatmap of three feature columns across biclustered genomic regions shows overall polarization, with higher activity concentrated in the center column and lower activity in the flanking columns. Row groups form distinct blocks that separate regions by this center-versus-flanks contrast. Across most blocks, the middle column is high (red) while the left and right columns are reduced (blue to white). Several top blocks display uniformly low signal across all columns. Smaller blocks occasionally show relatively higher signal in the left column with low center and right, and rare rows invert the dominant pattern with a lower center than flanks.
+
+
+===== /path/to/tools/chipdip1/test_run_2/bicluster/0hr/TFBS_enrichment/TFBS_enrichment.png =====
+Caption: TF motif enrichment across 0hr region clusters. Motif overrepresentation (log2 odds ratio) is summarized for clusters A–O. Enrichment concentrates in central-right clusters, particularly around H–I, while several motifs show weaker or depleted signals in early clusters A–D. Broad enrichment is evident for factors such as GABPA, with localized depletion for KAT2A and MYC in early clusters.
+Description: Motif enrichment is generally higher in mid-to-right clusters than in the leftmost clusters, forming a centralized-to-rightward bias. The strongest contiguous enrichment spans clusters around H–I, with elevated signals extending through J–N. GABPA shows broad enrichment with a pronounced peak in cluster A. Early clusters A–C display weaker or depleted signals for several factors, including KAT2A (notably low at A), MYC (low at C), and reduced signals for E2F4 and CTCF across A–D. CHD1, CHD2, POLR2A, MAX, and multiple GATA factors show mid-to-right–biased enrichment across many clusters.
+
+
+===== /path/to/tools/chipdip1/test_run_2/bicluster/0hr/genomic_distribution/ccre_distribution.png =====
+Caption: cCRE class composition across 0hr bicluster groups. Shown are cCRE annotations for groups A–O in the 0hr sample. Distal and proximal enhancer states constitute most regions overall, while promoter-like states are relatively higher in groups G–O; CA/TF-associated categories and other annotations contribute smaller shares. The pattern indicates a transition from distal enhancer enrichment in early groups toward greater promoter-like representation later.
+Description: Across groups A–O, enhancer-like categories dominate, with an overall shift from stronger distal enhancer representation in earlier groups to increased promoter-like content in later groups. dELS is the largest component in A–F and remains substantial throughout, while pELS becomes more prominent from H–O. PLS is minimal in A–F but expands markedly in G–O, especially in J–O. CA (DNase-only) and TF-related classes are more evident in A–C and E–F but are scarce later, and CA–H3K4me3, CA–CTCF, CA–TF, and other remain small across all groups.
+
+
+===== /path/to/tools/chipdip1/test_run_2/bicluster/0hr/genomic_distribution/genic_distribution.png =====
+Caption: Genic annotation breakdown of 0hr region clusters. Percentages of clustered regions (A–O) overlapping promoters, 5' UTR, exons, introns, 3' UTR, or intergenic sequence are shown. Intronic annotations dominate across clusters, promoters are generally the next most abundant, UTRs are minimal, and the intergenic share varies with larger fractions in some clusters (e.g., A).
+Description: Across clusters A–O at 0hr, regions are predominantly intronic, with smaller promoter and exon contributions; UTR annotations remain minor and an intergenic “other” portion varies across clusters. Intronic annotations form the largest share in most clusters. Promoter content is comparatively high in B, D, H, I, K, and O but lower in A and J. Exon fractions are moderate and more apparent in F–J and M–O, while 5' and 3' UTRs are consistently small; the intergenic “other” share is relatively elevated in A and D.
+
+
+===== /path/to/tools/chipdip1/test_run_2/bicluster/6hr/biclustering_heatmap.png =====
+Caption: Biclustering highlights central feature activation at 6 hr. Genomic regions (rows) and three feature pairs (columns) are co-clustered by normalized signal at 6 hr. Most biclusters show elevated activity in the middle feature with lower levels in the flanking features, while a minority display uniformly low signals across all features.
+Description: Across three feature columns, signals are generally higher in the middle column and lower in the two flanking columns, producing a strongly polarized central-high pattern. Row groups form distinct modules separated by boundaries.
+Most modules show strong positive values in the middle column with weak or negative values on the left and near-zero to weak values on the right. Several modules near the top exhibit uniformly low signals across all columns. The intensity of the middle column varies by module, with multiple blocks in the lower half showing the highest values and no block displaying a clear center-low, flanks-high pattern.
+
+
+===== /path/to/tools/chipdip1/test_run_2/bicluster/6hr/TFBS_enrichment/TFBS_enrichment.png =====
+Caption: TF motif enrichment across 6hr region clusters. Motif overrepresentation is summarized for clusters A–O. Enrichment is widespread, with PAX5 highest across clusters and broad elevation for EP300, JUN/JUND, MAX, and POLR2A-associated motifs, while lower or negative signals for NANOG, MXI1, ZMIZ1, and CEBPB are concentrated in early clusters.
+Description: Across clusters A–O, transcription factor motifs are generally more enriched than depleted, with stronger signals concentrated in mid-to-late clusters and weaker or negative signals appearing mainly early. The overall pattern is broadly elevated rather than sharply polarized by cluster. PAX5 shows the strongest and most uniform enrichment across clusters. EP300, JUN/JUND, MAX, USF1/USF2, GABPA, ETS1, and POLR2A-related motifs are consistently elevated across many clusters. Depletion is most apparent for NANOG, MXI1, ZMIZ1, and CEBPB, predominantly in clusters A–C. A coordinated increase across many factors is visible around clusters H–K compared with flanking groups.
+
+
+===== /path/to/tools/chipdip1/test_run_2/bicluster/6hr/genomic_distribution/ccre_distribution.png =====
+Caption: cCRE category composition across 6hr clusters. For each cluster (A–O), regions identified at 6hr are annotated with ENCODE cCRE categories to show their compositional percentages. Most clusters are dominated by dELS and pELS with a substantial PLS component, while CA- and TF-related states and the other category contribute smaller fractions.
+Description: Across clusters A–O, enhancer-associated categories are predominant, with distributions largely similar between clusters. The overall composition skews toward higher shares of dELS and pELS, with PLS also contributing broadly; remaining categories appear in smaller proportions.
+At the pattern level, dELS is consistently the largest component in every cluster. pELS and PLS vary in size between clusters but remain prominent across groups. CA and TF-related states are minor and become more noticeable in clusters such as A and I, whereas CA–H3K4me3 and CA–CTCF are only minimal across all groups. An 'other' category is present in each cluster as a small residual share.
+
+
+===== /path/to/tools/chipdip1/test_run_2/bicluster/6hr/genomic_distribution/genic_distribution.png =====
+Caption: Genic annotation composition of 6hr regions across groups. Composition of 6hr regions among promoter, exon, intron, UTR, and other categories for groups A–O. Introns dominate across groups, promoters are second most prevalent, exons vary by group, and both UTRs remain minor with a consistent other fraction present.
+Description: Across groups A–O, the 6hr regions are predominantly intronic, with promoters generally the next most represented category; exons and UTRs are lower overall. Introns comprise the largest share in every group, with especially large proportions in B, H, and L. Promoter contributions are substantial in several groups, notably D, E, H, L, and O. Exonic content varies by group, with F, I, N, and O showing comparatively larger exon fractions than most others. Both 5′ and 3′ UTR categories remain minor across all groups, and an “other” category appears as a relatively consistent residual across groups.
+
+
+===== /path/to/tools/chipdip1/test_run_2/bicluster/24hr/biclustering_heatmap.png =====
+Caption: Biclustering reveals dominant middle-column activation at 24 hr. Heatmap of three feature pairs across clustered genomic regions from the 24 hr dataset. Most modules exhibit elevated signal in the middle feature with reduced signal in the left feature and variable levels in the right feature, highlighting coordinated modules at this time point.
+Description: Three columns of feature-pair signals are displayed across biclustered genomic regions at 24 hr. Overall, the middle column shows higher signal, the left column shows lower signal, and the right column is more variable. Many modules present consistently high middle-column values coupled with low left-column values and lower-to-moderate right-column values. Near the top, a few modules show the opposite tendency with reduced middle-column signal and comparatively higher right-column signal. Toward the bottom, the middle column maintains strong signal across successive modules.
+
+
+===== /path/to/tools/chipdip1/test_run_2/bicluster/24hr/TFBS_enrichment/TFBS_enrichment.png =====
+Caption: TF motif enrichment across 24hr region clusters. Motif overrepresentation is summarized for clusters A–O, highlighting broadly elevated signals for JUND, RAD21/SMC3, and POLR2A phosphorylation states, with patchier or reduced signals for NRF1, ZMIZ1, KAT2A, and NELFE in select clusters. These patterns nominate candidate regulators associated with the 24hr chromatin states.
+Description: Across region clusters A–O, transcription factor motifs are generally more enriched than depleted, with moderate differentiation among clusters. Signals are broadly elevated rather than strongly polarized between groups.
+JUND shows the strongest and uniform enrichment across all clusters. PAX5 and the cohesin-related factors RAD21 and SMC3, as well as POLR2AphosphoS5 and POLR2AphosphoS2, display consistent enrichment. Several factors, including NRF1, ZMIZ1, KAT2A, and NELFE, exhibit weaker or negative enrichment in subsets of clusters, most apparent toward clusters A–C and midline groups. NANOG and POU5F1 show sparse enrichment, and a mild dip is visible around clusters H–J compared with stronger signals toward L–O.
+
+
+===== /path/to/tools/chipdip1/test_run_2/bicluster/24hr/genomic_distribution/ccre_distribution.png =====
+Caption: cCRE class composition of 24hr genomic clusters. Clusters A–O are summarized by their percentages across cCRE states (dELS, pELS, PLS, CA–H3K4me3, CA–CTCF, CA–TF, TF, CA, other). Enhancer-like states (dELS, pELS) predominate in every cluster, with PLS present at lower levels and the remaining categories contributing minor fractions with modest between-cluster variation.
+Description: Across clusters A–O, enhancer-like categories dominate, indicating a generally higher enhancer representation than promoter- or TF/CTCF-associated classes. The overall composition is stable across clusters with limited divergence. In every cluster, dELS constitutes the largest share, followed by pELS; PLS is present as a smaller but consistent portion. CA–H3K4me3, CA–CTCF, CA–TF, and TF each appear only as thin fractions, while CA and other categories contribute modest residual shares. No single cluster shows a markedly distinct pattern from the rest.
+
+
+===== /path/to/tools/chipdip1/test_run_2/bicluster/24hr/genomic_distribution/genic_distribution.png =====
+Caption: Genic distribution of 24hr regions across biclusters. Stacked proportions for biclusters A–O partition regions among promoter, 5' UTR, exon, intron, 3' UTR, and other categories. Most biclusters are intron-dominant with variable promoter contributions, while exon and UTR fractions remain comparatively small.
+Description: Across biclusters A–O, intronic assignments constitute the largest share, with promoters contributing next most; exon and UTR categories are smaller, and an additional “other” portion remains in every group. Patterns vary by group: A and C are dominated by intronic segments with little promoter content, whereas B, D–F, H, and O show comparatively larger promoter fractions. G–J display relatively larger exon portions than most other groups. The 5' UTR is consistently small, 3' UTR appears as a thin component, and the “other” category varies, tending to be smaller in G–J than in A or O.
+
+
+💬 [AUTO] Responding to interrupt with:
+ good
+
+User Feedback Received:
+good
+
+🧠 AiMessage:
+Report saved to: /path/to/tools/chipdip1/test_run_2/report.pdf
+
+✅ Graph execution complete.
+ℹ️  [TOKEN] Usage tracking skipped (no admin_api_key set).
+  success       : True
+  timed_out     : False
+  runtime       : 2948.8s
+  tokens        : 0
+  error_message : None
+  success rate  : 2/2 (100.0%)

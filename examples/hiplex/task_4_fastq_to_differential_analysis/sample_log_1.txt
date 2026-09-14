@@ -1,0 +1,813 @@
+
+==================== RUN 1/2 ====================
+Planned output directory for this run: /path/to/tools/hiplex4/test_run_1
+Initial prompt for this run:
+We have raw paired-end FASTQ files generated from Hiplex Cut&Tag experiments, located at:
+
+/path/to/fastq
+
+The barcode configuration file for the Hiplex Cut&Tag experiment is located at:
+
+/path/to/barcode.csv
+
+The analysis aims to identify genomic regions that differ between the C group and the T group, using hg38 as the reference genome.
+
+The dataset contains four samples: C1, C2, T1, and T2. Biclustering analysis should first be performed jointly on C1 and C2 to identify CRF pair clusters or localization patterns across genomic regions. These patterns should then be used to compare the C group (C1, C2) with the T group (T1, T2) to identify differential regions.
+
+Pathway enrichment analysis should be performed on the differential regions to characterize the biological processes associated with these changes.
+
+All intermediate files and final results should be written to the following output directory:
+
+/path/to/tools/hiplex4/test_run_1
+
+Planner is deriving plan
+
+[Extractor] did_expand: True
+[Extractor] Final input_file_path to use: ['/path/to/fastq/C1/test_R2.fastq.gz', '/path/to/fastq/C1/test_R1.fastq.gz', '/path/to/fastq/T1/test_R2.fastq.gz', '/path/to/fastq/T1/test_R1.fastq.gz', '/path/to/fastq/C2/test_R1.fastq.gz', '/path/to/fastq/C2/test_R2.fastq.gz', '/path/to/fastq/T2/test_R2.fastq.gz', '/path/to/fastq/T2/test_R1.fastq.gz', '/path/to/barcode.csv']
+🧠 AiMessage:
+Step 1 — Function: create_barcode_fasta
+- Inputs:
+  - input: /path/to/barcode.csv
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+- Outputs:
+  - /path/to/tools/hiplex4/test_run_1/barcode/barcode_fwd.fasta
+  - /path/to/tools/hiplex4/test_run_1/barcode/barcode_rev.fasta
+  - Log: /path/to/tools/hiplex4/test_run_1/log/create_barcode_fasta.log
+
+Step 2 — Function: demultiplex_reads (sample: C1)
+- Inputs:
+  - barcode_fwd_fasta: Step 1 output /.../barcode/barcode_fwd.fasta
+  - barcode_rev_fasta: Step 1 output /.../barcode/barcode_rev.fasta
+  - sample: C1
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+  - fastq_r1: /path/to/fastq/C1/test_R1.fastq.gz
+  - fastq_r2: /path/to/fastq/C1/test_R2.fastq.gz
+- Outputs:
+  - demux_dir: /path/to/tools/hiplex4/test_run_1/demux/C1/
+  - Log: /path/to/tools/hiplex4/test_run_1/log/C1_demultiplex_reads.log
+
+Step 3 — Function: identify_adapter (sample: C1)
+- Inputs:
+  - fastq_dir: Step 2 output demux_dir /path/to/tools/hiplex4/test_run_1/demux/C1/
+  - sample: C1
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+- Outputs:
+  - trimmed_dir: /path/to/tools/hiplex4/test_run_1/trim/C1/
+  - Log: /path/to/tools/hiplex4/test_run_1/log/C1_identify_adapter.log
+
+Step 4 — Function: align_reads (sample: C1)
+- Inputs:
+  - fastq_dir: Step 3 output trimmed_dir /path/to/tools/hiplex4/test_run_1/trim/C1/
+  - sample: C1
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+  - ref_genome: hg38
+- Outputs:
+  - bam_dir: /path/to/tools/hiplex4/test_run_1/bam/C1/
+  - Log: /path/to/tools/hiplex4/test_run_1/log/C1_align_reads.log
+
+Step 5 — Function: build_count_matrix (sample: C1)
+- Inputs:
+  - bam_dir: Step 4 output /path/to/tools/hiplex4/test_run_1/bam/C1/
+  - sample: C1
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+  - ref_genome: hg38
+- Outputs:
+  - count_matrix_file: /path/to/tools/hiplex4/test_run_1/count_matrix/C1/C1_Count_Matrix_800.feather
+  - Log: /path/to/tools/hiplex4/test_run_1/log/C1_build_count_matrix.log
+
+Step 6 — Function: demultiplex_reads (sample: C2)
+- Inputs:
+  - barcode_fwd_fasta: Step 1 output /.../barcode/barcode_fwd.fasta
+  - barcode_rev_fasta: Step 1 output /.../barcode/barcode_rev.fasta
+  - sample: C2
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+  - fastq_r1: /path/to/fastq/C2/test_R1.fastq.gz
+  - fastq_r2: /path/to/fastq/C2/test_R2.fastq.gz
+- Outputs:
+  - demux_dir: /path/to/tools/hiplex4/test_run_1/demux/C2/
+  - Log: /path/to/tools/hiplex4/test_run_1/log/C2_demultiplex_reads.log
+
+Step 7 — Function: identify_adapter (sample: C2)
+- Inputs:
+  - fastq_dir: Step 6 output demux_dir /path/to/tools/hiplex4/test_run_1/demux/C2/
+  - sample: C2
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+- Outputs:
+  - trimmed_dir: /path/to/tools/hiplex4/test_run_1/trim/C2/
+  - Log: /path/to/tools/hiplex4/test_run_1/log/C2_identify_adapter.log
+
+Step 8 — Function: align_reads (sample: C2)
+- Inputs:
+  - fastq_dir: Step 7 output trimmed_dir /path/to/tools/hiplex4/test_run_1/trim/C2/
+  - sample: C2
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+  - ref_genome: hg38
+- Outputs:
+  - bam_dir: /path/to/tools/hiplex4/test_run_1/bam/C2/
+  - Log: /path/to/tools/hiplex4/test_run_1/log/C2_align_reads.log
+
+Step 9 — Function: build_count_matrix (sample: C2)
+- Inputs:
+  - bam_dir: Step 8 output /path/to/tools/hiplex4/test_run_1/bam/C2/
+  - sample: C2
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+  - ref_genome: hg38
+- Outputs:
+  - count_matrix_file: /path/to/tools/hiplex4/test_run_1/count_matrix/C2/C2_Count_Matrix_800.feather
+  - Log: /path/to/tools/hiplex4/test_run_1/log/C2_build_count_matrix.log
+
+Step 10 — Function: demultiplex_reads (sample: T1)
+- Inputs:
+  - barcode_fwd_fasta: Step 1 output /.../barcode/barcode_fwd.fasta
+  - barcode_rev_fasta: Step 1 output /.../barcode/barcode_rev.fasta
+  - sample: T1
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+  - fastq_r1: /path/to/fastq/T1/test_R1.fastq.gz
+  - fastq_r2: /path/to/fastq/T1/test_R2.fastq.gz
+- Outputs:
+  - demux_dir: /path/to/tools/hiplex4/test_run_1/demux/T1/
+  - Log: /path/to/tools/hiplex4/test_run_1/log/T1_demultiplex_reads.log
+
+Step 11 — Function: identify_adapter (sample: T1)
+- Inputs:
+  - fastq_dir: Step 10 output demux_dir /path/to/tools/hiplex4/test_run_1/demux/T1/
+  - sample: T1
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+- Outputs:
+  - trimmed_dir: /path/to/tools/hiplex4/test_run_1/trim/T1/
+  - Log: /path/to/tools/hiplex4/test_run_1/log/T1_identify_adapter.log
+
+Step 12 — Function: align_reads (sample: T1)
+- Inputs:
+  - fastq_dir: Step 11 output trimmed_dir /path/to/tools/hiplex4/test_run_1/trim/T1/
+  - sample: T1
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+  - ref_genome: hg38
+- Outputs:
+  - bam_dir: /path/to/tools/hiplex4/test_run_1/bam/T1/
+  - Log: /path/to/tools/hiplex4/test_run_1/log/T1_align_reads.log
+
+Step 13 — Function: build_count_matrix (sample: T1)
+- Inputs:
+  - bam_dir: Step 12 output /path/to/tools/hiplex4/test_run_1/bam/T1/
+  - sample: T1
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+  - ref_genome: hg38
+- Outputs:
+  - count_matrix_file: /path/to/tools/hiplex4/test_run_1/count_matrix/T1/T1_Count_Matrix_800.feather
+  - Log: /path/to/tools/hiplex4/test_run_1/log/T1_build_count_matrix.log
+
+Step 14 — Function: demultiplex_reads (sample: T2)
+- Inputs:
+  - barcode_fwd_fasta: Step 1 output /.../barcode/barcode_fwd.fasta
+  - barcode_rev_fasta: Step 1 output /.../barcode/barcode_rev.fasta
+  - sample: T2
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+  - fastq_r1: /path/to/fastq/T2/test_R1.fastq.gz
+  - fastq_r2: /path/to/fastq/T2/test_R2.fastq.gz
+- Outputs:
+  - demux_dir: /path/to/tools/hiplex4/test_run_1/demux/T2/
+  - Log: /path/to/tools/hiplex4/test_run_1/log/T2_demultiplex_reads.log
+
+Step 15 — Function: identify_adapter (sample: T2)
+- Inputs:
+  - fastq_dir: Step 14 output demux_dir /path/to/tools/hiplex4/test_run_1/demux/T2/
+  - sample: T2
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+- Outputs:
+  - trimmed_dir: /path/to/tools/hiplex4/test_run_1/trim/T2/
+  - Log: /path/to/tools/hiplex4/test_run_1/log/T2_identify_adapter.log
+
+Step 16 — Function: align_reads (sample: T2)
+- Inputs:
+  - fastq_dir: Step 15 output trimmed_dir /path/to/tools/hiplex4/test_run_1/trim/T2/
+  - sample: T2
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+  - ref_genome: hg38
+- Outputs:
+  - bam_dir: /path/to/tools/hiplex4/test_run_1/bam/T2/
+  - Log: /path/to/tools/hiplex4/test_run_1/log/T2_align_reads.log
+
+Step 17 — Function: build_count_matrix (sample: T2)
+- Inputs:
+  - bam_dir: Step 16 output /path/to/tools/hiplex4/test_run_1/bam/T2/
+  - sample: T2
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+  - ref_genome: hg38
+- Outputs:
+  - count_matrix_file: /path/to/tools/hiplex4/test_run_1/count_matrix/T2/T2_Count_Matrix_800.feather
+  - Log: /path/to/tools/hiplex4/test_run_1/log/T2_build_count_matrix.log
+
+Step 18 — Function: biclustering_wrapper (group: C)
+- Inputs:
+  - count_matrix_files:
+    - /path/to/tools/hiplex4/test_run_1/count_matrix/C1/C1_Count_Matrix_800.feather
+    - /path/to/tools/hiplex4/test_run_1/count_matrix/C2/C2_Count_Matrix_800.feather
+  - group_tag: C
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+  - ref_genome: hg38
+- Outputs:
+  - region_cluster: /path/to/tools/hiplex4/test_run_1/bicluster/C/row_table.tsv
+  - pair_cluster (to be reused in Step 19): /path/to/tools/hiplex4/test_run_1/bicluster/C/col_table.tsv
+  - heatmap: /path/to/tools/hiplex4/test_run_1/bicluster/C/biclustering_heatmap.pdf
+  - Log: /path/to/tools/hiplex4/test_run_1/log/biclustering_wrapper.log
+
+Step 19 — Function: differential_analysis
+- Inputs:
+  - count_matrix_files (order matches conditions):
+    - /path/to/tools/hiplex4/test_run_1/count_matrix/C1/C1_Count_Matrix_800.feather
+    - /path/to/tools/hiplex4/test_run_1/count_matrix/C2/C2_Count_Matrix_800.feather
+    - /path/to/tools/hiplex4/test_run_1/count_matrix/T1/T1_Count_Matrix_800.feather
+    - /path/to/tools/hiplex4/test_run_1/count_matrix/T2/T2_Count_Matrix_800.feather
+  - conditions: ["C", "C", "T", "T"]
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+  - col_cluster_file_path: Step 18 output /path/to/tools/hiplex4/test_run_1/bicluster/C/col_table.tsv
+  - ref_genome: hg38
+- Outputs:
+  - Per-comparison directory (example for T_vs_C):
+    - Summary table: /path/to/tools/hiplex4/test_run_1/differential/T_vs_C/summary.tsv
+    - Summary plot: /path/to/tools/hiplex4/test_run_1/differential/T_vs_C/summary.pdf
+    - Pathway annotation bubbleplot: /path/to/tools/hiplex4/test_run_1/differential/T_vs_C/pathway_annotation/pathway_annotation.pdf
+    - Significant region TSVs (written only if any are significant): /path/to/tools/hiplex4/test_run_1/differential/T_vs_C/*_sig.tsv
+  - Log: /path/to/tools/hiplex4/test_run_1/log/differential_analysis.log
+
+
+Final deliverables
+- Biclustering results for the C group:
+  - Pair cluster assignments: /path/to/tools/hiplex4/test_run_1/bicluster/C/col_table.tsv
+  - Region cluster assignments: /path/to/tools/hiplex4/test_run_1/bicluster/C/row_table.tsv
+  - Biclustering heatmap: /path/to/tools/hiplex4/test_run_1/bicluster/C/biclustering_heatmap.pdf
+- Differential accessibility analysis (C vs T), using the biclustering-derived pair clusters:
+  - Differential summary table: /path/to/tools/hiplex4/test_run_1/differential/T_vs_C/summary.tsv
+  - Differential summary plot: /path/to/tools/hiplex4/test_run_1/differential/T_vs_C/summary.pdf
+  - Pathway enrichment bubbleplot: /path/to/tools/hiplex4/test_run_1/differential/T_vs_C/pathway_annotation/pathway_annotation.pdf
+  - Significant region tables (per CRF-pair cluster or pair; only if any pass thresholds): /path/to/tools/hiplex4/test_run_1/differential/T_vs_C/*_sig.tsv
+
+Number of samples
+- 4 (C1, C2, T1, T2)
+
+Required parameters (not provided and without defaults)
+- None
+
+[Extractor] Extracting important information...
+
+🧠 AiMessage:
+
+
+
+
+-------- EXTRACTED FIELDS ------
+
+Overall plan: Identify differential genomic regions between the C and T groups from Hiplex Cut&Tag data using hg38, guided by biclustering on C and followed by differential and pathway enrichment analyses.
+
+Number of sample: 4
+
+Input file path(s): ['/path/to/fastq/C1/test_R2.fastq.gz', '/path/to/fastq/C1/test_R1.fastq.gz', '/path/to/fastq/T1/test_R2.fastq.gz', '/path/to/fastq/T1/test_R1.fastq.gz', '/path/to/fastq/C2/test_R1.fastq.gz', '/path/to/fastq/C2/test_R2.fastq.gz', '/path/to/fastq/T2/test_R2.fastq.gz', '/path/to/fastq/T2/test_R1.fastq.gz', '/path/to/barcode.csv']
+
+Required parameters: 
+
+Output_dir: /path/to/tools/hiplex4/test_run_1
+
+--------------------------------
+
+💬 [AUTO] Responding to interrupt with:
+ good
+
+[User Feedback] Received feedback: good
+
+🧠 AiMessage:
+User is satisfied — proceed to validation.
+
+Validator is checking if all needed field is complete
+
+🧠 AiMessage:
+
+
+✅ Validation passed — nothing else required from you.
+
+[Executor] current_step: Step 1 — Function: create_barcode_fasta
+- Inputs:
+  - input: /path/to/barcode.csv
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+- Outputs:
+  - /path/to/tools/hiplex4/test_run_1/barcode/barcode_fwd.fasta
+  - /path/to/tools/hiplex4/test_run_1/barcode/barcode_rev.fasta
+  - Log: /path/to/tools/hiplex4/test_run_1/log/create_barcode_fasta.log
+[Executor] is_auto_code: False
+[Executor] downstream_plan length: 15771
+[Executor] executed_step_updated: N/A
+[Executor] Executing structured plan with tool call...
+🔧 Tool to be called: create_barcode_fasta
+🧷 Tool call id: call_dBedvaP5xdyNz4ySmar3SLmh
+🧠 AiMessage:
+
+🧠 ToolMessage:
+{"barcode_fwd_fasta": "/path/to/tools/hiplex4/test_run_1/barcode/barcode_fwd.fasta", "barcode_rev_fasta": "/path/to/tools/hiplex4/test_run_1/barcode/barcode_rev.fasta", "log_out": "/path/to/tools/hiplex4/test_run_1/log/create_barcode_fasta.log"}
+
+[Executor] current_step: Step 2 — Function: demultiplex_reads (sample: C1)
+- Inputs:
+  - barcode_fwd_fasta: /path/to/tools/hiplex4/test_run_1/barcode/barcode_fwd.fasta
+  - barcode_rev_fasta: /path/to/tools/hiplex4/test_run_1/barcode/barcode_rev.fasta
+  - sample: C1
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+  - fastq_r1: /path/to/fastq/C1/test_R1.fastq.gz
+  - fastq_r2: /path/to/fastq/C1/test_R2.fastq.gz
+- Outputs:
+  - demux_dir: /path/to/tools/hiplex4/test_run_1/demux/C1/
+  - Log: /path/to/tools/hiplex4/test_run_1/log/C1_demultiplex_reads.log
+[Executor] is_auto_code: False
+[Executor] downstream_plan length: 15500
+[Executor] executed_step_updated: Step 1 — Function: create_barcode_fasta
+- Inputs:
+  - input: /path/to/barcode.csv
+  - out_dir: /path/to/tools/h
+[Executor] Executing structured plan with tool call...
+🔧 Tool to be called: demultiplex_reads
+🧷 Tool call id: call_1D5A1AQaFzdHWwx9QQ5LakV1
+🧠 AiMessage:
+
+🧠 ToolMessage:
+{"demux_dir": "/path/to/tools/hiplex4/test_run_1/demux/C1", "log_out": "/path/to/tools/hiplex4/test_run_1/log/C1_demultiplex_reads.log"}
+
+[Executor] current_step: Step 3 — Function: identify_adapter (sample: C1)
+- Inputs:
+  - fastq_dir: /path/to/tools/hiplex4/test_run_1/demux/C1
+  - sample: C1
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+- Outputs:
+  - trimmed_dir: /path/to/tools/hiplex4/test_run_1/trim/C1/
+  - Log: /path/to/tools/hiplex4/test_run_1/log/C1_identify_adapter.log
+[Executor] is_auto_code: False
+[Executor] downstream_plan length: 14865
+[Executor] executed_step_updated: Step 2 — Function: demultiplex_reads (sample: C1)
+- Inputs:
+  - barcode_fwd_fasta: /path/to/tools/hiplex4/test_run_1/barcode/bar
+[Executor] Executing structured plan with tool call...
+🔧 Tool to be called: identify_adapter
+🧷 Tool call id: call_tjxpza9DQJP5EJTJybBUpdJf
+🧠 AiMessage:
+
+🧠 ToolMessage:
+{"trimmed_dir": "/path/to/tools/hiplex4/test_run_1/trim/C1", "log_out": "/path/to/tools/hiplex4/test_run_1/log/C1_identify_adapter.log"}
+
+[Executor] current_step: Step 4 — Function: align_reads (sample: C1)
+- Inputs:
+  - fastq_dir: /path/to/tools/hiplex4/test_run_1/trim/C1
+  - sample: C1
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+  - ref_genome: hg38
+- Outputs:
+  - bam_dir: /path/to/tools/hiplex4/test_run_1/bam/C1/
+  - Log: /path/to/tools/hiplex4/test_run_1/log/C1_align_reads.log
+[Executor] is_auto_code: False
+[Executor] downstream_plan length: 14223
+[Executor] executed_step_updated: Step 3 — Function: identify_adapter (sample: C1)
+- Inputs:
+  - fastq_dir: /path/to/tools/hiplex4/test_run_1/demux/C1
+  - sample:
+[Executor] Executing structured plan with tool call...
+🔧 Tool to be called: align_reads
+🧷 Tool call id: call_1ihP7PLK1SYlCPeVcWdikufW
+🧠 AiMessage:
+
+🧠 ToolMessage:
+{"bam_dir": "/path/to/tools/hiplex4/test_run_1/bam/C1", "log_out": "/path/to/tools/hiplex4/test_run_1/log/C1_align_reads.log"}
+
+[Executor] current_step: Step 5 — Function: build_count_matrix (sample: C1)
+- Inputs:
+  - bam_dir: /path/to/tools/hiplex4/test_run_1/bam/C1
+  - sample: C1
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+  - ref_genome: hg38
+- Outputs:
+  - count_matrix_file: /path/to/tools/hiplex4/test_run_1/count_matrix/C1/C1_Count_Matrix_800.feather
+  - Log: /path/to/tools/hiplex4/test_run_1/log/C1_build_count_matrix.log
+[Executor] is_auto_code: False
+[Executor] downstream_plan length: 13536
+[Executor] executed_step_updated: Step 4 — Function: align_reads (sample: C1)
+- Inputs:
+  - fastq_dir: /path/to/tools/hiplex4/test_run_1/trim/C1
+  - sample: C1
+  
+[Executor] Executing structured plan with tool call...
+🔧 Tool to be called: build_count_matrix
+🧷 Tool call id: call_G3EiveVnT8qyZXE1JqYfHJoD
+🧠 AiMessage:
+
+🧠 ToolMessage:
+{"count_matrix_file": "/path/to/tools/hiplex4/test_run_1/count_matrix/C1/C1_Count_Matrix_800.feather", "log_out": "/path/to/tools/hiplex4/test_run_1/log/C1_build_count_matrix.log"}
+
+[Executor] current_step: Step 6 — Function: demultiplex_reads (sample: C2)
+- Inputs:
+  - barcode_fwd_fasta: /path/to/tools/hiplex4/test_run_1/barcode/barcode_fwd.fasta
+  - barcode_rev_fasta: /path/to/tools/hiplex4/test_run_1/barcode/barcode_rev.fasta
+  - sample: C2
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+  - fastq_r1: /path/to/fastq/C2/test_R1.fastq.gz
+  - fastq_r2: /path/to/fastq/C2/test_R2.fastq.gz
+- Outputs:
+  - demux_dir: /path/to/tools/hiplex4/test_run_1/demux/C2/
+  - Log: /path/to/tools/hiplex4/test_run_1/log/C2_demultiplex_reads.log
+[Executor] is_auto_code: False
+[Executor] downstream_plan length: 12569
+[Executor] executed_step_updated: Step 5 — Function: build_count_matrix (sample: C1)
+- Inputs:
+  - bam_dir: /path/to/tools/hiplex4/test_run_1/bam/C1
+  - sample: C
+[Executor] Executing structured plan with tool call...
+🔧 Tool to be called: demultiplex_reads
+🧷 Tool call id: call_pAxy7Pp0mEMOQyxCNvb3E0GI
+🧠 AiMessage:
+
+🧠 ToolMessage:
+{"demux_dir": "/path/to/tools/hiplex4/test_run_1/demux/C2", "log_out": "/path/to/tools/hiplex4/test_run_1/log/C2_demultiplex_reads.log"}
+
+[Executor] current_step: Step 7 — Function: identify_adapter (sample: C2)
+- Inputs:
+  - fastq_dir: /path/to/tools/hiplex4/test_run_1/demux/C2
+  - sample: C2
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+- Outputs:
+  - trimmed_dir: /path/to/tools/hiplex4/test_run_1/trim/C2/
+  - Log: /path/to/tools/hiplex4/test_run_1/log/C2_identify_adapter.log
+[Executor] is_auto_code: False
+[Executor] downstream_plan length: 11934
+[Executor] executed_step_updated: Step 6 — Function: demultiplex_reads (sample: C2)
+- Inputs:
+  - barcode_fwd_fasta: /path/to/tools/hiplex4/test_run_1/barcode/bar
+[Executor] Executing structured plan with tool call...
+🔧 Tool to be called: identify_adapter
+🧷 Tool call id: call_BpDpJGZWIXSJouqJAlEzbkYk
+🧠 AiMessage:
+
+🧠 ToolMessage:
+{"trimmed_dir": "/path/to/tools/hiplex4/test_run_1/trim/C2", "log_out": "/path/to/tools/hiplex4/test_run_1/log/C2_identify_adapter.log"}
+
+[Executor] current_step: Step 8 — Function: align_reads (sample: C2)
+- Inputs:
+  - fastq_dir: /path/to/tools/hiplex4/test_run_1/trim/C2
+  - sample: C2
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+  - ref_genome: hg38
+- Outputs:
+  - bam_dir: /path/to/tools/hiplex4/test_run_1/bam/C2/
+  - Log: /path/to/tools/hiplex4/test_run_1/log/C2_align_reads.log
+[Executor] is_auto_code: False
+[Executor] downstream_plan length: 11292
+[Executor] executed_step_updated: Step 7 — Function: identify_adapter (sample: C2)
+- Inputs:
+  - fastq_dir: /path/to/tools/hiplex4/test_run_1/demux/C2
+  - sample:
+[Executor] Executing structured plan with tool call...
+🔧 Tool to be called: align_reads
+🧷 Tool call id: call_96EOZnbkCnxiArj4HN1NbQh5
+🧠 AiMessage:
+
+🧠 ToolMessage:
+{"bam_dir": "/path/to/tools/hiplex4/test_run_1/bam/C2", "log_out": "/path/to/tools/hiplex4/test_run_1/log/C2_align_reads.log"}
+
+[Executor] current_step: Step 9 — Function: build_count_matrix (sample: C2)
+- Inputs:
+  - bam_dir: /path/to/tools/hiplex4/test_run_1/bam/C2
+  - sample: C2
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+  - ref_genome: hg38
+- Outputs:
+  - count_matrix_file: /path/to/tools/hiplex4/test_run_1/count_matrix/C2/C2_Count_Matrix_800.feather
+  - Log: /path/to/tools/hiplex4/test_run_1/log/C2_build_count_matrix.log
+[Executor] is_auto_code: False
+[Executor] downstream_plan length: 10605
+[Executor] executed_step_updated: Step 8 — Function: align_reads (sample: C2)
+- Inputs:
+  - fastq_dir: /path/to/tools/hiplex4/test_run_1/trim/C2
+  - sample: C2
+  
+[Executor] Executing structured plan with tool call...
+🔧 Tool to be called: build_count_matrix
+🧷 Tool call id: call_I4wNMJbtxhuIG8okF1RaVQZ5
+🧠 AiMessage:
+
+🧠 ToolMessage:
+{"count_matrix_file": "/path/to/tools/hiplex4/test_run_1/count_matrix/C2/C2_Count_Matrix_800.feather", "log_out": "/path/to/tools/hiplex4/test_run_1/log/C2_build_count_matrix.log"}
+
+[Executor] current_step: Step 10 — Function: demultiplex_reads (sample: T1)
+- Inputs:
+  - barcode_fwd_fasta: /path/to/tools/hiplex4/test_run_1/barcode/barcode_fwd.fasta
+  - barcode_rev_fasta: /path/to/tools/hiplex4/test_run_1/barcode/barcode_rev.fasta
+  - sample: T1
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+  - fastq_r1: /path/to/fastq/T1/test_R1.fastq.gz
+  - fastq_r2: /path/to/fastq/T1/test_R2.fastq.gz
+- Outputs:
+  - demux_dir: /path/to/tools/hiplex4/test_run_1/demux/T1/
+  - Log: /path/to/tools/hiplex4/test_run_1/log/T1_demultiplex_reads.log
+[Executor] is_auto_code: False
+[Executor] downstream_plan length: 9637
+[Executor] executed_step_updated: Step 9 — Function: build_count_matrix (sample: C2)
+- Inputs:
+  - bam_dir: /path/to/tools/hiplex4/test_run_1/bam/C2
+  - sample: C
+[Executor] Executing structured plan with tool call...
+🔧 Tool to be called: demultiplex_reads
+🧷 Tool call id: call_fYH6tZCHqANQE2teLpXaNvCc
+🧠 AiMessage:
+
+🧠 ToolMessage:
+{"demux_dir": "/path/to/tools/hiplex4/test_run_1/demux/T1", "log_out": "/path/to/tools/hiplex4/test_run_1/log/T1_demultiplex_reads.log"}
+
+[Executor] current_step: Step 11 — Function: identify_adapter (sample: T1)
+- Inputs:
+  - fastq_dir: /path/to/tools/hiplex4/test_run_1/demux/T1
+  - sample: T1
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+- Outputs:
+  - trimmed_dir: /path/to/tools/hiplex4/test_run_1/trim/T1/
+  - Log: /path/to/tools/hiplex4/test_run_1/log/T1_identify_adapter.log
+[Executor] is_auto_code: False
+[Executor] downstream_plan length: 9000
+[Executor] executed_step_updated: Step 10 — Function: demultiplex_reads (sample: T1)
+- Inputs:
+  - barcode_fwd_fasta: /path/to/tools/hiplex4/test_run_1/barcode/ba
+[Executor] Executing structured plan with tool call...
+🔧 Tool to be called: identify_adapter
+🧷 Tool call id: call_skW5GKCYgQvcw2GXrMBR7Zuu
+🧠 AiMessage:
+
+🧠 ToolMessage:
+{"trimmed_dir": "/path/to/tools/hiplex4/test_run_1/trim/T1", "log_out": "/path/to/tools/hiplex4/test_run_1/log/T1_identify_adapter.log"}
+
+[Executor] current_step: Step 12 — Function: align_reads (sample: T1)
+- Inputs:
+  - fastq_dir: /path/to/tools/hiplex4/test_run_1/trim/T1
+  - sample: T1
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+  - ref_genome: hg38
+- Outputs:
+  - bam_dir: /path/to/tools/hiplex4/test_run_1/bam/T1/
+  - Log: /path/to/tools/hiplex4/test_run_1/log/T1_align_reads.log
+[Executor] is_auto_code: False
+[Executor] downstream_plan length: 8356
+[Executor] executed_step_updated: Step 11 — Function: identify_adapter (sample: T1)
+- Inputs:
+  - fastq_dir: /path/to/tools/hiplex4/test_run_1/demux/T1
+  - sample
+[Executor] Executing structured plan with tool call...
+🔧 Tool to be called: align_reads
+🧷 Tool call id: call_CqJQEjfSHHZYWkIOLCqXJJsw
+🧠 AiMessage:
+
+🧠 ToolMessage:
+{"bam_dir": "/path/to/tools/hiplex4/test_run_1/bam/T1", "log_out": "/path/to/tools/hiplex4/test_run_1/log/T1_align_reads.log"}
+
+[Executor] current_step: Step 13 — Function: build_count_matrix (sample: T1)
+- Inputs:
+  - bam_dir: /path/to/tools/hiplex4/test_run_1/bam/T1
+  - sample: T1
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+  - ref_genome: hg38
+- Outputs:
+  - count_matrix_file: /path/to/tools/hiplex4/test_run_1/count_matrix/T1/T1_Count_Matrix_800.feather
+  - Log: /path/to/tools/hiplex4/test_run_1/log/T1_build_count_matrix.log
+[Executor] is_auto_code: False
+[Executor] downstream_plan length: 7667
+[Executor] executed_step_updated: Step 12 — Function: align_reads (sample: T1)
+- Inputs:
+  - fastq_dir: /path/to/tools/hiplex4/test_run_1/trim/T1
+  - sample: T1
+ 
+[Executor] Executing structured plan with tool call...
+🔧 Tool to be called: build_count_matrix
+🧷 Tool call id: call_aDXZFqaMg5mOI4OySnj4T6C9
+🧠 AiMessage:
+
+🧠 ToolMessage:
+{"count_matrix_file": "/path/to/tools/hiplex4/test_run_1/count_matrix/T1/T1_Count_Matrix_800.feather", "log_out": "/path/to/tools/hiplex4/test_run_1/log/T1_build_count_matrix.log"}
+
+[Executor] current_step: Step 14 — Function: demultiplex_reads (sample: T2)
+- Inputs:
+  - barcode_fwd_fasta: /path/to/tools/hiplex4/test_run_1/barcode/barcode_fwd.fasta
+  - barcode_rev_fasta: /path/to/tools/hiplex4/test_run_1/barcode/barcode_rev.fasta
+  - sample: T2
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+  - fastq_r1: /path/to/fastq/T2/test_R1.fastq.gz
+  - fastq_r2: /path/to/fastq/T2/test_R2.fastq.gz
+- Outputs:
+  - demux_dir: /path/to/tools/hiplex4/test_run_1/demux/T2/
+  - Log: /path/to/tools/hiplex4/test_run_1/log/T2_demultiplex_reads.log
+[Executor] is_auto_code: False
+[Executor] downstream_plan length: 6699
+[Executor] executed_step_updated: Step 13 — Function: build_count_matrix (sample: T1)
+- Inputs:
+  - bam_dir: /path/to/tools/hiplex4/test_run_1/bam/T1
+  - sample: 
+[Executor] Executing structured plan with tool call...
+🔧 Tool to be called: demultiplex_reads
+🧷 Tool call id: call_FYTkXMEzjO8VTwdXQ77Ki4ZP
+🧠 AiMessage:
+
+🧠 ToolMessage:
+{"demux_dir": "/path/to/tools/hiplex4/test_run_1/demux/T2", "log_out": "/path/to/tools/hiplex4/test_run_1/log/T2_demultiplex_reads.log"}
+
+[Executor] current_step: Step 15 — Function: identify_adapter (sample: T2)
+- Inputs:
+  - fastq_dir: /path/to/tools/hiplex4/test_run_1/demux/T2
+  - sample: T2
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+- Outputs:
+  - trimmed_dir: /path/to/tools/hiplex4/test_run_1/trim/T2/
+  - Log: /path/to/tools/hiplex4/test_run_1/log/T2_identify_adapter.log
+[Executor] is_auto_code: False
+[Executor] downstream_plan length: 6062
+[Executor] executed_step_updated: Step 14 — Function: demultiplex_reads (sample: T2)
+- Inputs:
+  - barcode_fwd_fasta: /path/to/tools/hiplex4/test_run_1/barcode/ba
+[Executor] Executing structured plan with tool call...
+🔧 Tool to be called: identify_adapter
+🧷 Tool call id: call_qJgTjhPyfKsQmT2fU7kQ74ek
+🧠 AiMessage:
+
+🧠 ToolMessage:
+{"trimmed_dir": "/path/to/tools/hiplex4/test_run_1/trim/T2", "log_out": "/path/to/tools/hiplex4/test_run_1/log/T2_identify_adapter.log"}
+
+[Executor] current_step: Step 16 — Function: align_reads (sample: T2)
+- Inputs:
+  - fastq_dir: /path/to/tools/hiplex4/test_run_1/trim/T2
+  - sample: T2
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+  - ref_genome: hg38
+- Outputs:
+  - bam_dir: /path/to/tools/hiplex4/test_run_1/bam/T2/
+  - Log: /path/to/tools/hiplex4/test_run_1/log/T2_align_reads.log
+[Executor] is_auto_code: False
+[Executor] downstream_plan length: 5418
+[Executor] executed_step_updated: Step 15 — Function: identify_adapter (sample: T2)
+- Inputs:
+  - fastq_dir: /path/to/tools/hiplex4/test_run_1/demux/T2
+  - sample
+[Executor] Executing structured plan with tool call...
+🔧 Tool to be called: align_reads
+🧷 Tool call id: call_jgdlC13f2I6IZ8kDe0pU8gsz
+🧠 AiMessage:
+
+🧠 ToolMessage:
+{"bam_dir": "/path/to/tools/hiplex4/test_run_1/bam/T2", "log_out": "/path/to/tools/hiplex4/test_run_1/log/T2_align_reads.log"}
+
+[Executor] current_step: Step 17 — Function: build_count_matrix (sample: T2)
+- Inputs:
+  - bam_dir: /path/to/tools/hiplex4/test_run_1/bam/T2
+  - sample: T2
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+  - ref_genome: hg38
+- Outputs:
+  - count_matrix_file: /path/to/tools/hiplex4/test_run_1/count_matrix/T2/T2_Count_Matrix_800.feather
+  - Log: /path/to/tools/hiplex4/test_run_1/log/T2_build_count_matrix.log
+[Executor] is_auto_code: False
+[Executor] downstream_plan length: 4729
+[Executor] executed_step_updated: Step 16 — Function: align_reads (sample: T2)
+- Inputs:
+  - fastq_dir: /path/to/tools/hiplex4/test_run_1/trim/T2
+  - sample: T2
+ 
+[Executor] Executing structured plan with tool call...
+🔧 Tool to be called: build_count_matrix
+🧷 Tool call id: call_BF03m6vvkyL7IOA0VEJsFSZS
+🧠 AiMessage:
+
+🧠 ToolMessage:
+{"count_matrix_file": "/path/to/tools/hiplex4/test_run_1/count_matrix/T2/T2_Count_Matrix_800.feather", "log_out": "/path/to/tools/hiplex4/test_run_1/log/T2_build_count_matrix.log"}
+
+[Executor] current_step: Step 18 — Function: biclustering_wrapper (group: C)
+- Inputs:
+  - count_matrix_files:
+    - /path/to/tools/hiplex4/test_run_1/count_matrix/C1/C1_Count_Matrix_800.feather
+    - /path/to/tools/hiplex4/test_run_1/count_matrix/C2/C2_Count_Matrix_800.feather
+  - group_tag: C
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+  - ref_genome: hg38
+- Outputs:
+  - region_cluster: /path/to/tools/hiplex4/test_run_1/bicluster/C/row_table.tsv
+  - pair_cluster (to be reused in Step 19): /path/to/tools/hiplex4/test_run_1/bicluster/C/col_table.tsv
+  - heatmap: /path/to/tools/hiplex4/test_run_1/bicluster/C/biclustering_heatmap.pdf
+  - Log: /path/to/tools/hiplex4/test_run_1/log/biclustering_wrapper.log
+[Executor] is_auto_code: False
+[Executor] downstream_plan length: 3534
+[Executor] executed_step_updated: Step 17 — Function: build_count_matrix (sample: T2)
+- Inputs:
+  - bam_dir: /path/to/tools/hiplex4/test_run_1/bam/T2
+  - sample: 
+[Executor] Executing structured plan with tool call...
+🔧 Tool to be called: biclustering_wrapper
+🧷 Tool call id: call_tTk2EpUwvPQibh7YC8wJxpDZ
+🧠 AiMessage:
+
+🧠 ToolMessage:
+{"region_cluster": "/path/to/tools/hiplex4/test_run_1/bicluster/C/row_table.tsv", "pair_cluster": "/path/to/tools/hiplex4/test_run_1/bicluster/C/col_table.tsv", "heatmap": "/path/to/tools/hiplex4/test_run_1/bicluster/C/biclustering_heatmap.pdf", "TFBS_enrichment_heatmap": "/path/to/tools/hiplex4/test_run_1/bicluster/C/TFBS_enrichment/TFBS_enrichment.pdf", "distribution_plots": ["/path/to/tools/hiplex4/test_run_1/bicluster/C/genomic_distribution/ccre_distribution.pdf", "/path/to/tools/hiplex4/test_run_1/bicluster/C/genomic_distribution/genic_distribution.pdf"], "log_out": "/path/to/tools/hiplex4/test_run_1/log/biclustering_wrapper.log"}
+
+[Executor] current_step: Step 19 — Function: differential_analysis
+- Inputs:
+  - count_matrix_files (order matches conditions):
+    - /path/to/tools/hiplex4/test_run_1/count_matrix/C1/C1_Count_Matrix_800.feather
+    - /path/to/tools/hiplex4/test_run_1/count_matrix/C2/C2_Count_Matrix_800.feather
+    - /path/to/tools/hiplex4/test_run_1/count_matrix/T1/T1_Count_Matrix_800.feather
+    - /path/to/tools/hiplex4/test_run_1/count_matrix/T2/T2_Count_Matrix_800.feather
+  - conditions: ["C", "C", "T", "T"]
+  - out_dir: /path/to/tools/hiplex4/test_run_1
+  - col_cluster_file_path: /path/to/tools/hiplex4/test_run_1/bicluster/C/col_table.tsv
+  - ref_genome: hg38
+- Outputs:
+  - Per-comparison directory (example for T_vs_C):
+    - Summary table: /path/to/tools/hiplex4/test_run_1/differential/T_vs_C/summary.tsv
+    - Summary plot: /path/to/tools/hiplex4/test_run_1/differential/T_vs_C/summary.pdf
+    - Pathway annotation bubbleplot: /path/to/tools/hiplex4/test_run_1/differential/T_vs_C/pathway_annotation/pathway_annotation.pdf
+    - Significant region TSVs (written only if any are significant): /path/to/tools/hiplex4/test_run_1/differential/T_vs_C/*_sig.tsv
+  - Log: /path/to/tools/hiplex4/test_run_1/log/differential_analysis.log
+[Executor] is_auto_code: False
+[Executor] downstream_plan length: 0
+[Executor] executed_step_updated: Step 18 — Function: biclustering_wrapper (group: C)
+- Inputs:
+  - count_matrix_files:
+    - /path/to/tools/hiplex4/test_run_1/co
+[Executor] Executing structured plan with tool call...
+🔧 Tool to be called: differential_analysis
+🧷 Tool call id: call_RDWGTGuEbCwnCCz2Ii5VbNk9
+🧠 AiMessage:
+
+🧠 ToolMessage:
+{"sig_regions": {"cluster2": ["/path/to/tools/hiplex4/test_run_1/differential/T_vs_C/cluster2_sig.tsv"], "cluster4": ["/path/to/tools/hiplex4/test_run_1/differential/T_vs_C/cluster4_sig.tsv"]}, "sig_summary": ["/path/to/tools/hiplex4/test_run_1/differential/T_vs_C/summary.tsv"], "pathway_annotation_tables": {}, "sig_summary_barplot": ["/path/to/tools/hiplex4/test_run_1/differential/T_vs_C/summary.pdf"], "pathway_annotation_bubbleplots": ["/path/to/tools/hiplex4/test_run_1/differential/T_vs_C/pathway_annotation/pathway_annotation.pdf"], "log_out": "/path/to/tools/hiplex4/test_run_1/log/differential_analysis.log"}
+
+[Executor] current_step: END
+[Executor] is_auto_code: False
+[Executor] downstream_plan length: 0
+[Executor] executed_step_updated: Step 19 — Function: differential_analysis
+- Inputs:
+  - count_matrix_files (order matches conditions):
+    - /path/to/tools/hiplex4/round5/test_run_1_20260717
+[Executor] All steps executed. Moving to replayer.
+🧠 AiMessage:
+All plan steps executed successfully. Moving to END.
+🧠 AiMessage:
+Replayer output saved to /path/to/tools/hiplex4/test_run_1/summary/summary.py
+
+
+🧠 AiMessage: Start Generating Report 
+
+🧠 AiMessage: Interpreting the following figures:
+/path/to/tools/hiplex4/test_run_1/bicluster/C/biclustering_heatmap.png
+/path/to/tools/hiplex4/test_run_1/bicluster/C/TFBS_enrichment/TFBS_enrichment.png
+/path/to/tools/hiplex4/test_run_1/bicluster/C/genomic_distribution/ccre_distribution.png
+/path/to/tools/hiplex4/test_run_1/bicluster/C/genomic_distribution/genic_distribution.png
+/path/to/tools/hiplex4/test_run_1/differential/T_vs_C/summary.png
+/path/to/tools/hiplex4/test_run_1/differential/T_vs_C/pathway_annotation/pathway_annotation.png
+
+🧠 AiMessage: Generating captions and descriptions 
+
+
+===== /path/to/tools/hiplex4/test_run_1/bicluster/C/biclustering_heatmap.png =====
+Caption: Biclustering heatmap of control-region signal intensities. Rows (regions) and columns (control features) are jointly clustered to expose modules. Signals are largely low with confined higher-intensity bands, revealing region modules that remain depleted in left feature groups but are relatively enriched in rightmost groups.
+Description: Overall, the matrix shows predominantly lower intensities with localized areas of higher signal, indicating pronounced differentiation along both region and feature axes. The distribution forms coherent modules where certain region groups align with specific feature groups that depart from the global low baseline.
+At the pattern level, feature groups on the left exhibit broadly low signals across most regions, while central groups display mixed bands. Rightmost feature groups show comparatively higher signals, most evident within region modules in the lower portion of the matrix. Upper region modules remain largely low across features, whereas several bottom modules are selectively elevated in the rightmost features. Mid-level modules present alternating stripes that oppose neighboring feature groups.
+
+
+===== /path/to/tools/hiplex4/test_run_1/bicluster/C/TFBS_enrichment/TFBS_enrichment.png =====
+Caption: TF motif enrichment across control-region biclusters. Motif over-representation scores for transcription factor binding motifs (rows) are summarized across region clusters (columns) derived from the control-group biclustering. Most motifs show weaker or negative signals in left-side clusters and stronger enrichment in right-side clusters, indicating shared motif activity concentrated in the latter.
+Description: Across C-labeled region clusters, transcription factor motif signals are polarized: values tend to be lower on the left clusters and higher on the right, forming a left-to-right gradient. Many motifs shift from weak or negative values in the initial clusters to strong, widespread enrichment in the remaining clusters. A smaller subset stays low across most clusters, and only a few rows show localized enrichment confined to the leftmost clusters. Neighboring clusters exhibit broadly similar levels, indicating gradual rather than abrupt transitions.
+
+
+===== /path/to/tools/hiplex4/test_run_1/bicluster/C/genomic_distribution/ccre_distribution.png =====
+Caption: cCRE composition across biclusters highlights enhancer–promoter shifts. Percent composition of cCRE classes is summarized for clusters A–O. Upper clusters are enriched for dELS and pELS, whereas lower clusters are dominated by PLS, with CA-H3K4me3 and related CA/TF states contributing mainly to the upper groups.
+Description: Across clusters A–O, the cCRE class composition shows a directional shift from enhancer-enriched groups at the top to promoter-enriched groups at the bottom. Overall, enhancer-like states are prevalent in upper clusters, whereas promoter-like states dominate lower clusters.
+Clusters C–G are dominated by dELS with varying pELS and modest PLS, while H–O are largely PLS, approaching exclusivity in J–O. A–B contain substantial “other” along with CA- and TF-associated categories. CA–H3K4me3 is most visible in A–G and scarce in H–O; CA–CTCF and CA–TF appear only as small contributions in a few upper clusters. G shows a mixed profile with comparable dELS, pELS, and PLS.
+
+
+===== /path/to/tools/hiplex4/test_run_1/bicluster/C/genomic_distribution/genic_distribution.png =====
+Caption: Genic annotation composition across control biclustered region sets. Proportional genic categories are shown for clusters A–O from the control dataset. A gradient is evident, with promoter-heavy clusters (O–L and H) giving way to intron- and exon-rich groups in the middle and the largest 'other' fractions in A–B.
+Description: Across clusters A–O, gene-centric composition varies with a general shift from promoter-dominated groups at the bottom to intronic and 'other' enrichment toward the top. Promoter annotations comprise most of the content in O–L and H, with K still high but mixed with exon and intron. Clusters J and I, together with G–D and C, show larger intron fractions and noticeable exon portions, alongside reduced promoter. The top clusters A–B contain the largest 'other' shares and minimal promoter. 5' UTR and 3' UTR contributions are small across all clusters.
+
+
+===== /path/to/tools/hiplex4/test_run_1/differential/T_vs_C/summary.png =====
+Caption: DA region counts by cluster and regulation direction. Counts of up- and down-regulated regions are summarized across clusters. Most changes occur in cluster2 and cluster4, with up-regulated regions outnumbering down-regulated ones in both; cluster1 and cluster3 show none.
+Description: Across clusters, DA region changes are uneven and favor up-regulation over down-regulation. Most activity is confined to a subset of clusters rather than distributed broadly. Signals are concentrated in cluster2 and cluster4. Cluster2 shows the highest totals in both directions with a net excess of up-regulated regions. Cluster4 has fewer changes, again with more gains than losses. Cluster1 and cluster3 show no detectable DA regions.
+
+
+===== /path/to/tools/hiplex4/test_run_1/differential/T_vs_C/pathway_annotation/pathway_annotation.png =====
+Caption: Selective pathway enrichments concentrated in cluster2 only. Bubble plot summarizing pathway enrichments among regions differing between treatment and control. Strong signals are confined to cluster2, driven by ESTROGEN_RESPONSE_EARLY/LATE and cytokine/NF-κB pathways (IL2_STAT5_SIGNALING, TNFA_SIGNALING_VIA_NFKB), while cluster4 shows minimal enrichment.
+Description: Across two clusters, most pathways show low or no enrichment, with higher significance localized to cluster2. In cluster2, ESTROGEN_RESPONSE_EARLY and ESTROGEN_RESPONSE_LATE display the strongest signals, with IL2_STAT5_SIGNALING and TNFA_SIGNALING_VIA_NFKB also elevated. Cluster4 lacks distinct high-significance pathways, with uniformly small, pale bubbles across the pathway list.
+
+
+💬 [AUTO] Responding to interrupt with:
+ good
+
+User Feedback Received:
+good
+
+🧠 AiMessage:
+Report saved to: /path/to/tools/hiplex4/test_run_1/report.pdf
+
+✅ Graph execution complete.
+ℹ️  [TOKEN] Usage tracking skipped (no admin_api_key set).
+  success       : True
+  timed_out     : False
+  runtime       : 4965.8s
+  tokens        : 0
+  error_message : None
+  success rate  : 1/1 (100.0%)
