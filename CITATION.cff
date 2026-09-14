@@ -10,7 +10,14 @@ abstract: >-
   supported end to end.
 type: software
 license: MIT
-repository-code: "https://github.com/J041120h/ChromaPilot"
+repository-code: "https://github.com/J041120h/chromaPilot"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.22549678"
+    description: "Demo Data for ChromaPilot (concept DOI — always resolves to the latest version)"
+  - type: doi
+    value: "10.5281/zenodo.22753661"
+    description: "Demo Data for ChromaPilot (version 2)"
 keywords:
   - epigenomics
   - CUT&Tag

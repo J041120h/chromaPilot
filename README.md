@@ -2,6 +2,9 @@
 
 **An LLM agent that plans, runs and reports multiplexed epigenomics analyses.**
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22549678.svg)](https://doi.org/10.5281/zenodo.22549678)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 ChromaPilot turns a plain-language request — *"align these Hiplex CUT&Tag FASTQs
 against hg38, call peaks per CRF pair, and compare the C and T groups"* — into a
 reviewed, executed and documented analysis. It plans the pipeline, shows you the
@@ -53,8 +56,8 @@ retrieves supporting literature and compiles everything into `report.pdf`.
 ## Install
 
 ```bash
-git clone https://github.com/J041120h/ChromaPilot.git
-cd ChromaPilot
+git clone https://github.com/J041120h/chromaPilot.git
+cd chromaPilot
 bash setup.sh                      # creates a conda env named 'chromapilot'
 ```
 
@@ -113,6 +116,22 @@ agent.model  = agent.CONFIG.llm
 agent._init_rag_retrievers(agent.CONFIG.llm)
 agent.graph.stream(...)                # the compiled LangGraph state machine
 ```
+
+## Demo data
+
+Every dataset used in the paper, plus a video walkthrough and worked examples, is
+archived on Zenodo: **[10.5281/zenodo.22549678](https://doi.org/10.5281/zenodo.22549678)**
+(CC-BY-4.0; the DOI always resolves to the latest version).
+
+| File | Size | Contents |
+|---|---|---|
+| `chromapilot_demo.mp4` | 170 MB | Screen recording of a full run — request, plan review, execution, report |
+| `chromapilot_example_runs.zip` | 16 MB | Nine worked tasks: the request, two independent run transcripts, and the generated report |
+| `hiplex_cuttag_fastq.zip` / `_bam.zip` | 1.8 / 2.6 GB | Hiplex CUT&Tag, four samples (C1, C2, T1, T2), raw and aligned (hg38) |
+| `chipdip_mDC_25Ab_fastq.zip` / `_bam.zip` | 7.2 / 2.6 GB | ChIP-DIP, 25-antibody mouse dendritic cell, raw and per-target BAM |
+| `encode_showcase_data.tar.gz` | 77 MB | ENCODE showcase: count matrices (385,300 regions x 10 histone marks) for GM23248 and HCT116, two replicates each, plus the union peak set |
+
+The example runs are also in [`examples/`](examples/) in this repository.
 
 ## Repository layout
 
@@ -176,8 +195,14 @@ decide whether to commit any compute.
 
 ## Citation
 
-If you use ChromaPilot in your work, please cite the accompanying paper. See
-[`CITATION.cff`](CITATION.cff).
+If you use ChromaPilot in your work, please cite the accompanying paper (see
+[`CITATION.cff`](CITATION.cff)) and the demo data archive:
+
+> Jiang H, Yu Q, Jiang M, Qi J, Zhou W, Yu K, Ji H. *Demo Data for ChromaPilot.*
+> Zenodo. doi:[10.5281/zenodo.22549678](https://doi.org/10.5281/zenodo.22549678)
+
+Work using the ChIP-DIP pipeline should additionally cite Perez *et al.*,
+*Nat Genet* 2024 — see [`tools/chipdip_prep/NOTICE.md`](tools/chipdip_prep/NOTICE.md).
 
 ## License
 
